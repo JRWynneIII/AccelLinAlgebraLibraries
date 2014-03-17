@@ -1,6 +1,6 @@
 # Makefile for LinEq_CULA example
 
-all: clean checkEnv build64
+all: clean checkEnv sgesv
 
 include $(CULA_ROOT)/examples/common/common.mk
 
@@ -11,7 +11,6 @@ LIBPATH64=-L${CULA_LIB_PATH_64}
 
 LIBS=-lcula_core -lcula_lapack -lcublas -lcudart
 MODULES=./cula_lapack.f90
-SRC=./LinEq_CULA.f90
 
 CFLAGS=
 
@@ -32,8 +31,11 @@ ifndef CUDATOOLKIT_HOME
 	$(error Must load the cudatoolkit module!)
 endif
 
-build64: checkEnv
-	ftn $(CFLAGS) -o ./LinEq_CULA $(MODULES) $(SRC) $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS) 
+sgesv: checkEnv LinEq_CULA.f90
+	ftn $(CFLAGS) -o ./LinEq_CULA $(MODULES) LinEq_CULA.f90 $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS) 
+
+sgeqrf: checkEnv sgeqrf.f90
+	ftn $(CFLAGS) -o ./LinEq_CULA $(MODULES) sgeqrf.f90 $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS) 
 
 clean:
 	rm -f LinEq_CULA

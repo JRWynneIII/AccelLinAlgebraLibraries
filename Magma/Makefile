@@ -31,7 +31,6 @@ ifndef MAGMA_INC
 	$(error Must load the MAGMA module!)
 endif
 
-
 build: setEnv
 	ftn $(MAGMAMODULE) $(LIBS) $(SRC) -o $(OUTPUT)
 
