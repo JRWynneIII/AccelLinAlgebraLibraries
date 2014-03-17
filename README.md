@@ -1,7 +1,31 @@
 Accelerated Linear Algebra Libaries
 =======================
 
-This repository contains code that will show how to use various accelerated linear algebra libraries (MAGMA and CULA) with Fortran on Titan. Using the accelerated linear algebra libraries over the CPU versions will take advantage of Titan's NVIDIA GPUs which when used correctly can make your code execute faster and more efficiently.
+This repository contains code that will show how to use various accelerated linear algebra libraries (MAGMA and CULA) as well as how to use LAPACK on the CPU with Fortran on Titan. Using the accelerated linear algebra libraries over the CPU versions will take advantage of Titan's NVIDIA GPUs which when used correctly can make your code execute faster and more efficiently.
+
+###LAPACK
+---------
+LAPACK is a CPU based linear algebra library that is provided in the `cray-libsci` module that is loaded by default when any of the programming environment modules (`PrgEnv-*`) are loaded. This module works will any programming environment
+
+####Compiling
+Before compiling the LAPACK Fortran code, make sure that the `cray-libsci` module is indeed loaded in your compile time environment. Run
+```
+$ module list
+```
+to see what modules are loaded in your environment.
+
+To compile the LAPACK Fortran code, run
+```
+$ ftn LinEq.f90 -o $MEMBERWORK/<PROJID>/LinEq
+```
+
+>Don't forget to replace `<PROJID>` with the appropriate project ID!
+
+###Running
+To run LAPACK code, from your scratch directory run
+```
+$ aprun -n1 ./LinEq
+```
 
 ###MAGMA
 ---------
@@ -123,7 +147,7 @@ Finally launch the executable using aprun
 ```
 $ aprun -n1 ./LinEq_CULA
 ```
-An example of the expected output from running either the CULA or MAGMA SGESV code in this repository sholud look like this:
+An example of the expected output from running either the LAPACK, CULA or MAGMA SGESV code in this repository sholud look like this:
 ```
    1.00000012    
    1.00000036    
