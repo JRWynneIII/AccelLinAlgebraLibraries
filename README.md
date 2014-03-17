@@ -127,3 +127,5 @@ An example of the output you should expect from running either the CULA or MAGMA
    1.00000036    
 Application 4634293 resources: utime ~3s, stime ~1s, Rss ~155520, inblocks ~706, outblocks ~960
 ```
+
+>NOTE: The file `CULA/cula_lapack.f90` does not belong to me, it was taken from the CULA examples and edited by me.
