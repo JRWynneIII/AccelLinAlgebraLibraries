@@ -21,7 +21,7 @@ $ ftn LinEq.f90 -o $MEMBERWORK/<PROJID>/LinEq
 
 >Don't forget to replace `<PROJID>` with the appropriate project ID!
 
-###Running
+####Running
 To run LAPACK code, from your scratch directory run
 ```
 $ aprun -n1 ./LinEq
