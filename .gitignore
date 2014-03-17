@@ -2,3 +2,5 @@
 *.mod
 *.swp
 *.swo
+LinEq_CULA
+magma_sgesv
