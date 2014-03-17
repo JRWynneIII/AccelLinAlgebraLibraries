@@ -11,8 +11,7 @@ LIBPATH64=-L${CULA_LIB_PATH_64}
 
 LIBS=-lcula_core -lcula_lapack -lcublas -lcudart
 MODULES=./cula_lapack.f90
-
-CFLAGS=
+CRAY=
 
 checkEnv:	
 ifdef CRAY_PRGENVINTEL
@@ -20,7 +19,7 @@ ifdef CRAY_PRGENVINTEL
 endif
 
 ifdef CRAY_PRGENVCRAY
-	CFLAGS=-em
+	CRAY=-em
 endif
 #Check to see if cray-libsci is loaded
 ifdef CRAY_LIBSCI
@@ -32,11 +31,11 @@ ifndef CUDATOOLKIT_HOME
 endif
 
 sgesv: checkEnv LinEq_CULA.f90
-	ftn $(CFLAGS) -o ./LinEq_CULA $(MODULES) LinEq_CULA.f90 $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS) 
+	ftn $(CRAY) -o ./LinEq_CULA $(MODULES) LinEq_CULA.f90 $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS) 
 
 sgeqrf: checkEnv sgeqrf.f90
-	ftn $(CFLAGS) -o ./LinEq_CULA $(MODULES) sgeqrf.f90 $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS) 
+	ftn $(CRAY) -o ./LinEq_CULA $(MODULES) sgeqrf.f90 $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS) 
 
 clean:
-	rm -f LinEq_CULA
+	rm -f LinEq_CULA 
 	rm -f *.mod *.o

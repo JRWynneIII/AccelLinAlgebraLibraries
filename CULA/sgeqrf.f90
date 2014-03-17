@@ -17,9 +17,6 @@ PROGRAM CULA_TEST
   A(3,1)=3.4
   A(3,2)=7.2
   A(3,3)=-8.8
-  ! define vector b, make b a matrix and you can solve multiple
-  ! equations with the same A but different b
-
   status = CULA_SGEQRF(M, N, A, M, TAU)
   WRITE(*,*) A
 END
