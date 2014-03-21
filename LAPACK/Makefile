@@ -1,14 +1,17 @@
-all: clean checkEnv lapack
+all: clean checkEnv fortran_lapack C_lapack
 
-.PHONY: clean checkEnv lapack
+.PHONY: clean checkEnv fortran_lapack C_lapack
 
 checkEnv:
 ifndef CRAY_LIBSCI
 	$(error Must load the cray-libsci module!)
 endif
 
-lapack: checkEnv
+fortran_lapack: checkEnv
 	ftn LinEq.f90 -o ./LinEq
+
+C_lapack: checkEnv
+	cc -std=c99 sgesv.c -o ./LinEq
 
 clean:
 	rm -f *.o *.mod LinEq
