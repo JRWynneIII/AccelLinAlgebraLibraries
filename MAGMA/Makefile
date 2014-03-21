@@ -1,6 +1,6 @@
-all: setEnv build clean
+all: setEnv fortran_sgesv clean
 
-.PHONY: setEnv build clean
+.PHONY: setEnv fortran_sgesv clean
 
 LIBS=-lcuda -lmagma -lmagmablas
 MAGMAMODULE=./magma.f90
@@ -31,8 +31,11 @@ ifndef MAGMA_INC
 	$(error Must load the MAGMA module!)
 endif
 
-build: setEnv
+fortran_sgesv: setEnv
 	ftn $(MAGMAMODULE) $(LIBS) $(SRC) -o $(OUTPUT)
+
+C_sgesv: setEnv
+	cc -std=c99 $(LIBS) sgesv.c -o $(OUTPUT)
 
 clean: 
 	rm -f *.o *.mod
