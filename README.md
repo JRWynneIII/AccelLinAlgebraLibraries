@@ -5,9 +5,11 @@ This repository contains code that will show how to use various accelerated line
 
 ###LAPACK
 ---------
-LAPACK is a CPU based linear algebra library that is provided in the `cray-libsci` module that is loaded by default when any of the programming environment modules (`PrgEnv-*`) are loaded. This module works will any programming environment
 
-####Compiling
+LAPACK is a CPU based linear algebra library that is provided in the `cray-libsci` module that is loaded by default when any of the programming environment modules (`PrgEnv-*`) are loaded. This module works will any programming environment
+####Fortran
+------------
+#####Compiling
 Before compiling the LAPACK Fortran code, make sure that the `cray-libsci` module is indeed loaded in your compile time environment. Run
 ```
 $ module list
@@ -21,8 +23,29 @@ $ ftn LinEq.f90 -o $MEMBERWORK/<PROJID>/LinEq
 
 >Don't forget to replace `<PROJID>` with the appropriate project ID!
 
-####Running
+#####Running
 To run LAPACK code, from your scratch directory run
+```
+$ aprun -n1 ./LinEq
+```
+
+####C
+------
+#####Compiling
+Before compiling the LAPACK C code, make sure that the `cray-libsci` module is loaded int your environment. Run:
+```
+$ module list
+```
+to see a list of all the modules you have loaded.
+
+Compiling the LAPACK C code is done by running:
+```
+$ cc sgesv.c -o $MEMBERWORK/<PROJID>/LinEq
+```
+>Don't forget to replace `<PROJID>` with the appropriate project ID!
+
+#####Running
+To run the compiled LAPACK code, from your scratch directory run:
 ```
 $ aprun -n1 ./LinEq
 ```
@@ -31,7 +54,9 @@ $ aprun -n1 ./LinEq
 ---------
 MAGMA is an open source GPU accelerated Linear Algebra library provided by the University of Tennessee. Its availible on Titan in the `magma-1.3` and `magma-1.1` modules.
 
-####Compiling
+####Fortran
+-----------
+#####Compiling
 Before compiling the MAGMA Fortran code, the CUDA and MAGMA modules need to be loaded. This is accomplished by running either
 ```
 $ module load cudatoolkit
@@ -54,14 +79,14 @@ When compiling Fortran code for MAGMA, the `-lcuda` `-lmagma` and `-lmagmablas` 
 
 Finally to compile it, run
 ```
-$ ftn magma.f90 -lcuda -lmagma -lmagmablas sgesv.f90 -o ./magma_sgesv
+$ ftn magma.f90 -lcuda -lmagma -lmagmablas sgesv.f90 -o $MEMBERWORK/<PROJID>/magma_sgesv
 ```
 
 Where `magma.f90` is the file containing the Interface blocks. This can also be accomplished by using the Makefile provided in the `MAGMA` directory in this repository.
 
 Simply run 
 ```
-$ make
+$ make fortran_sgesv
 ```
 
 from inside the `MAGMA` directory. Next, just like with the CULA example, copy the generated executable to your scratch space
@@ -69,8 +94,44 @@ from inside the `MAGMA` directory. Next, just like with the CULA example, copy t
 $ cp magma_sgesv $MEMBERWORK/<PROJID>
 ```
 
-####Running
+#####Running
 To execute this code from an interactive job, simply change directory into your scratch space and launch it via aprun.
+```
+$ aprun -n1 ./magma_sgesv
+```
+
+####C
+-----
+#####Compiling
+Before compiling the MAGMA C code, the CUDA and MAGMA moduels must be loaded. Simply run:
+```
+$ module load cudatoolkit
+$ module load magma
+```
+or
+```
+$ module load cudatoolkit magma
+```
+Either way, the `cudatoolkit` module needs to be loaded before the MAGMA module.
+
+Next, change your programming environment to the GNU environment. MAGMA will only work correctly with the GNU compilers. To do this, run:
+```
+$ module swap PrgEnv-pgi PrgEnv-gnu
+```
+Replace `PrgEnv-pgi` with whichever programming environment is already loaded.
+
+Because MAGMA is a C library, there is no need for any kind of interface block. To compile the MAGMA C code, simply run:
+```
+$ cc -lcuda -lmagma -lmagmablas sgesv.c -o $MEMBERWORK/<PROJID>/magma_sgesv
+```
+Also running
+```
+$ make C_sgesv
+```
+from the MAGMA folder will compile it for you. After running the make command, make sure to copy the resulting executable to your scratch directory!
+
+#####Running
+To execute this code from an interactive job, simply change directory into your scratch space and launch it via aprun
 ```
 $ aprun -n1 ./magma_sgesv
 ```
@@ -79,8 +140,9 @@ $ aprun -n1 ./magma_sgesv
 ###CULA
 -------
 CULA is a CUDA accelerated linear algebra library availible from [www.culatools.com](www.culatools.com). Its availible on Titan in the `cula-dense` module (versions R13 through R16a. R14 is the default version on Titan).
-
-####Compiling
+####Fortran
+-----------
+#####Compiling
 Before compiling any CULA code on Titan, the `cray-libsci` module must be removed from the compilation environment by running:
 ```
 $ module unload cray-libsci
@@ -121,14 +183,8 @@ Alternatively, its possible to use the Makefile provided and run
 ```
 $ make sgesv
 ```
-for the SGESV example code or
 
-```
-$ make sgeqrf
-```
-for the SGEQRF example code.
-
-####Running
+#####Running
 
 To run this code in an interactive job, copy the executable (in this case `LinEq_CULA`) to your scratch space on ATLAS
 ```
@@ -147,7 +203,37 @@ Finally launch the executable using aprun
 ```
 $ aprun -n1 ./LinEq_CULA
 ```
-An example of the expected output from running either the LAPACK, CULA or MAGMA SGESV code in this repository sholud look like this:
+####C
+-----
+#####Compiling
+Before compiling any CULA code on Titan, the `cray-libsci` module must be removed from the compilation environment. To do this run:
+```
+$ module unload cray-libsci
+```
+>Note: Every time the programming environment is changed, the module must be re-unloaded as it is loaded with the new environment
+
+Next, the CULA and CUDA modules need to be loaded. To do this, run:
+```
+$ module load cula-dense
+$ module load cudatoolkit
+```
+>If a different version of CULA is required, simply replace `cula-dense` with, for instance, `cula-dense/R16a` for the R16a version of CULA
+
+To compile the CULA code, it needs to be linked agains all the cula libraries. This is done by compiling with `-lcula_core -lcula_lapack -lcublas -lcudart`. Along with this, the compiler needs to know where the libraries and include files exist. The `-I$CULA_INC_PATH -L$CULA_LIB_PATH_64` flags are used to do this. Finally run:
+```
+$ cc LinEq_CULA.c -o $MEMBERWORK/<PROJID>/LinEq_CULA -lcula_core -lcula_lapack -lcublas -lcudart -I$CULA_INC_PATH -L$CULA_LIB_PATH_64
+```
+Or use the provided Makefile to compile it. Run:
+```
+$ make C_sgesv
+```
+#####Running
+To run this in an interactive job, simply verify that the executable is in your scratch directory on ATLAS and run:
+```
+$ aprun -n1 ./LinEq_CULA
+```
+
+An example of the expected output from running either the LAPACK, CULA or MAGMA code in this repository sholud look like this:
 ```
    1.00000012    
    1.00000036    
