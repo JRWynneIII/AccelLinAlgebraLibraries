@@ -34,7 +34,7 @@ sgesv: checkEnv LinEq_CULA.f90
 	ftn $(CRAY) -o ./LinEq_CULA $(MODULES) LinEq_CULA.f90 $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS) 
 
 C_sgesv: checkEnv LinEq_CULA.c
-	cc -std=c99 $(CRAY) -o LinEq_CULA LinEq_CULA.c $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS)
+	cc $(CRAY) -o LinEq_CULA LinEq_CULA.c $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS)
 
 clean:
 	rm -f LinEq_CULA 

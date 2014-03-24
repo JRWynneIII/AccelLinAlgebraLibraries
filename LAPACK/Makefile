@@ -11,7 +11,7 @@ fortran_lapack: checkEnv
 	ftn LinEq.f90 -o ./LinEq
 
 C_lapack: checkEnv
-	cc -std=c99 sgesv.c -o ./LinEq
+	cc sgesv.c -o ./LinEq
 
 clean:
 	rm -f *.o *.mod LinEq

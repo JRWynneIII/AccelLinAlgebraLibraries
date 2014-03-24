@@ -35,7 +35,7 @@ fortran_sgesv: setEnv
 	ftn $(MAGMAMODULE) $(LIBS) $(SRC) -o $(OUTPUT)
 
 C_sgesv: setEnv
-	cc -std=c99 $(LIBS) sgesv.c -o $(OUTPUT)
+	cc $(LIBS) sgesv.c -o $(OUTPUT)
 
 clean: 
 	rm -f *.o *.mod

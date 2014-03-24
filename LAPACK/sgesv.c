@@ -9,7 +9,7 @@ int main()
   float *b, *AT;
   float A[3][3];
   int* pivot;
-  int i = 0, j = 0, ok, status;
+  int a = 0, i = 0, j = 0, ok, status;
   int m = 3, n = 1, mm = 9, mn = 3;
   int info;
 
@@ -32,13 +32,13 @@ int main()
   b[1] = -0.1;
   b[2] = 1.8;
 
-  for(int a = 0; a<3; a++)
-    for(int j = 0; j<3; j++)
+  for(a = 0; a<3; a++)
+    for(j = 0; j<3; j++)
       AT[j+3*a]=A[j][a];
 
   sgesv_(&m, &n, AT, &m, pivot, b, &m, &info);
 
-  for (int i = 0; i < 3; i++)
+  for (i = 0; i < 3; i++)
         printf("%f\n", b[i]);
   return 0;
 }
