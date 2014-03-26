@@ -21,7 +21,7 @@ To compile the LAPACK Fortran code, run
 $ ftn LinEq.f90 -o $MEMBERWORK/<PROJID>/LinEq
 ```
 
->Don't forget to replace `<PROJID>` with the appropriate project ID!
+>Don't forget to replace `<PROJID>` with the appropriate project ID
 
 #####Running
 To run LAPACK code, from your scratch directory run
@@ -47,7 +47,7 @@ Compiling the LAPACK C code is done by running:
 ```
 $ cc sgesv.c -o $MEMBERWORK/<PROJID>/LinEq
 ```
->Don't forget to replace `<PROJID>` with the appropriate project ID!
+>Don't forget to replace `<PROJID>` with the appropriate project ID
 
 #####Running
 To run the compiled LAPACK code, from your scratch directory run:
@@ -62,21 +62,16 @@ $ qsub titan.pbs
 
 ###MAGMA
 ---------
-MAGMA is an open source GPU accelerated Linear Algebra library provided by the University of Tennessee. Its availible on Titan in the `magma-1.3` and `magma-1.1` modules.
+MAGMA is an open source GPU accelerated Linear Algebra library provided by the Innovative Computing Laboratory at the University of Tennessee. Its availible on Titan in the `magma-1.3` and `magma-1.1` modules.
 
 ####Fortran
 -----------
 #####Compiling
-Before compiling the MAGMA Fortran code, the CUDA and MAGMA modules need to be loaded. This is accomplished by running either
-```
-$ module load cudatoolkit
-$ module load magma
-```
-or by running
+Before compiling the MAGMA Fortran code, the CUDA and MAGMA modules need to be loaded. This is accomplished by running 
 ```
 $ module load cudatoolkit magma
 ```
-Either way this is done, the CUDA module needs to be loaded before the MAGMA module. 
+Keep in mind, the CUDA module needs to be loaded before the MAGMA module. 
 
 Next, the `PrgEnv-gnu` programming environment needs to be loaded instead of the Intel, Cray, or the default PGI environments. MAGMA will only work with the GNU compilers. To do this run:
 ```
@@ -120,11 +115,6 @@ $ qsub titan.pbs
 -----
 #####Compiling
 Before compiling the MAGMA C code, the CUDA and MAGMA moduels must be loaded. Simply run:
-```
-$ module load cudatoolkit
-$ module load magma
-```
-or
 ```
 $ module load cudatoolkit magma
 ```
