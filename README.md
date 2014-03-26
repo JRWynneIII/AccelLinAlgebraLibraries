@@ -10,7 +10,7 @@ LAPACK is a CPU based linear algebra library that is provided in the `cray-libsc
 ####Fortran
 ------------
 #####Compiling
-Before compiling the LAPACK Fortran code, make sure that the `cray-libsci` module is indeed loaded in your compile time environment. Run
+Before compiling the LAPACK Fortran code, make sure that the `cray-libsci` module is loaded in your compile time environment. Run
 ```
 $ module list
 ```
