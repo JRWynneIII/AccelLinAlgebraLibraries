@@ -29,6 +29,11 @@ To run LAPACK code, from your scratch directory run
 $ aprun -n1 ./LinEq
 ```
 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the LAPACK folder to your scratch directory. Next, change into that directory and run 
+```
+$ qsub titan.pbs
+```
+
 ####C
 ------
 #####Compiling
@@ -48,6 +53,11 @@ $ cc sgesv.c -o $MEMBERWORK/<PROJID>/LinEq
 To run the compiled LAPACK code, from your scratch directory run:
 ```
 $ aprun -n1 ./LinEq
+```
+
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the LAPACK folder to your scratch directory. Next, change into that directory and run 
+```
+$ qsub titan.pbs
 ```
 
 ###MAGMA
@@ -100,6 +110,12 @@ To execute this code from an interactive job, simply change directory into your 
 $ aprun -n1 ./magma_sgesv
 ```
 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the MAGMA folder to your scratch directory. Next, change into that directory and run 
+```
+$ qsub titan.pbs
+```
+
+
 ####C
 -----
 #####Compiling
@@ -134,6 +150,11 @@ from the MAGMA folder will compile it for you. After running the make command, m
 To execute this code from an interactive job, simply change directory into your scratch space and launch it via aprun
 ```
 $ aprun -n1 ./magma_sgesv
+```
+
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the MAGMA folder to your scratch directory. Next, change into that directory and run 
+```
+$ qsub titan.pbs
 ```
 
 
@@ -203,6 +224,12 @@ Finally launch the executable using aprun
 ```
 $ aprun -n1 ./LinEq_CULA
 ```
+
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the CULA folder to your scratch directory. Next, change into that directory and run 
+```
+$ qsub titan.pbs
+```
+
 ####C
 -----
 #####Compiling
@@ -232,6 +259,12 @@ To run this in an interactive job, simply verify that the executable is in your 
 ```
 $ aprun -n1 ./LinEq_CULA
 ```
+
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the CULA folder to your scratch directory. Next, change into that directory and run 
+```
+$ qsub titan.pbs
+```
+
 
 An example of the expected output from running either the LAPACK, CULA or MAGMA code in this repository sholud look like this:
 ```
