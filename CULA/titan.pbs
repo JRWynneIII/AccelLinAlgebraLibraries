@@ -1,0 +1,13 @@
+#PBS -A <PROJID>
+#PBS -N CULA
+#PBS -j oe
+#PBS -l walltime=0:10:00,nodes=1
+#PBS -V
+#    End PBS directives and begin shell commands
+ 
+cd $MEMBERWORK/<PROJID>
+source $MODULESHOME/init/zsh
+module unload cray-libsci
+module load cula-dense
+date
+aprun -n 1 ./LinEq_CULA

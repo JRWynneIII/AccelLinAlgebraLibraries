@@ -1,0 +1,12 @@
+#PBS -A <PROJID>
+#PBS -N LAPACK
+#PBS -j oe
+#PBS -l walltime=0:10:00,nodes=1
+#PBS -V
+#    End PBS directives and begin shell commands
+ 
+cd $MEMBERWORK/<PROJID>
+source $MODULESHOME/init/zsh
+module load cray-libsci
+date
+aprun -n 1 ./LinEq
