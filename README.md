@@ -71,7 +71,7 @@ Before compiling the MAGMA Fortran code, the CUDA and MAGMA modules need to be l
 ```
 $ module load cudatoolkit magma
 ```
-Keep in mind, the CUDA module needs to be loaded before the MAGMA module. 
+This will first load the CUDA toolkit then the MAGMA module. MAGMA needs access to the CUDA toolkit in order to work, because MAGMA is GPU accelerated. Because of this, the CUDA toolkit needs to be loaded before the MAGMA module.
 
 Next, the `PrgEnv-gnu` programming environment needs to be loaded instead of the Intel, Cray, or the default PGI environments. MAGMA will only work with the GNU compilers. To do this run:
 ```
