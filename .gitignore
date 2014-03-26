@@ -4,3 +4,5 @@
 *.swo
 LinEq_CULA
 magma_sgesv
+LinEq
+magma_vs_lapack.f90
