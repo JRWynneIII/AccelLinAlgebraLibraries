@@ -55,7 +55,7 @@ To run the compiled LAPACK code, from your scratch directory run:
 $ aprun -n1 ./LinEq
 ```
 
-The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the LAPACK folder to your scratch directory. Next, change into that directory and run 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then edit `titan.example.pbs` to change <PROJID> to the appropriate project id. Save the edited file as `titan.pbs`. Next, copy the `titan.pbs` file from the LAPACK folder to your scratch directory. Finally, change into that directory and run 
 ```
 $ qsub titan.pbs
 ```
@@ -105,7 +105,7 @@ To execute this code from an interactive job, simply change directory into your 
 $ aprun -n1 ./magma_sgesv
 ```
 
-The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the MAGMA folder to your scratch directory. Next, change into that directory and run 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then edit `titan.example.pbs` to change <PROJID> to the appropriate project id. Save the edited file as `titan.pbs`. Next, copy the `titan.pbs` file from the MAGMA folder to your scratch directory. Finally, change into that directory and run 
 ```
 $ qsub titan.pbs
 ```
@@ -142,7 +142,7 @@ To execute this code from an interactive job, simply change directory into your 
 $ aprun -n1 ./magma_sgesv
 ```
 
-The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the MAGMA folder to your scratch directory. Next, change into that directory and run 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then edit `titan.example.pbs` to change <PROJID> to the appropriate project id. Save the edited file as `titan.pbs`. Next, copy the `titan.pbs` file from the MAGMA folder to your scratch directory. Finally, change into that directory and run 
 ```
 $ qsub titan.pbs
 ```
@@ -215,7 +215,7 @@ Finally launch the executable using aprun
 $ aprun -n1 ./LinEq_CULA
 ```
 
-The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the CULA folder to your scratch directory. Next, change into that directory and run 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then edit `titan.example.pbs` to change <PROJID> to the appropriate project id. Save the edited file as `titan.pbs`. Next, copy the `titan.pbs` file from the CULA folder to your scratch directory. Finally, change into that directory and run 
 ```
 $ qsub titan.pbs
 ```
@@ -250,7 +250,7 @@ To run this in an interactive job, simply verify that the executable is in your 
 $ aprun -n1 ./LinEq_CULA
 ```
 
-The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the CULA folder to your scratch directory. Next, change into that directory and run 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then edit `titan.example.pbs` to change <PROJID> to the appropriate project id. Save the edited file as `titan.pbs`. Next, copy the `titan.pbs` file from the CULA folder to your scratch directory. Finally, change into that directory and run 
 ```
 $ qsub titan.pbs
 ```
