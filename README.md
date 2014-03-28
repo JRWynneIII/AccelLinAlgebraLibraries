@@ -10,7 +10,7 @@ LAPACK is a CPU based linear algebra library that is provided in the `cray-libsc
 ####Fortran
 ------------
 #####Compiling
-Before compiling the LAPACK Fortran code, make sure that the `cray-libsci` module is indeed loaded in your compile time environment. Run
+Before compiling the LAPACK Fortran code, make sure that the `cray-libsci` module is loaded in your compile time environment. Run
 ```
 $ module list
 ```
@@ -21,12 +21,17 @@ To compile the LAPACK Fortran code, run
 $ ftn LinEq.f90 -o $MEMBERWORK/<PROJID>/LinEq
 ```
 
->Don't forget to replace `<PROJID>` with the appropriate project ID!
+>Don't forget to replace `<PROJID>` with the appropriate project ID
 
 #####Running
 To run LAPACK code, from your scratch directory run
 ```
 $ aprun -n1 ./LinEq
+```
+
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the LAPACK folder to your scratch directory. Next, change into that directory and run 
+```
+$ qsub titan.pbs
 ```
 
 ####C
@@ -42,7 +47,7 @@ Compiling the LAPACK C code is done by running:
 ```
 $ cc sgesv.c -o $MEMBERWORK/<PROJID>/LinEq
 ```
->Don't forget to replace `<PROJID>` with the appropriate project ID!
+>Don't forget to replace `<PROJID>` with the appropriate project ID
 
 #####Running
 To run the compiled LAPACK code, from your scratch directory run:
@@ -50,23 +55,23 @@ To run the compiled LAPACK code, from your scratch directory run:
 $ aprun -n1 ./LinEq
 ```
 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the LAPACK folder to your scratch directory. Next, change into that directory and run 
+```
+$ qsub titan.pbs
+```
+
 ###MAGMA
 ---------
-MAGMA is an open source GPU accelerated Linear Algebra library provided by the University of Tennessee. Its availible on Titan in the `magma-1.3` and `magma-1.1` modules.
+MAGMA is an open source GPU accelerated Linear Algebra library provided by the Innovative Computing Laboratory at the University of Tennessee. Its availible on Titan in the `magma-1.3` and `magma-1.1` modules.
 
 ####Fortran
 -----------
 #####Compiling
-Before compiling the MAGMA Fortran code, the CUDA and MAGMA modules need to be loaded. This is accomplished by running either
-```
-$ module load cudatoolkit
-$ module load magma
-```
-or by running
+Before compiling the MAGMA Fortran code, the CUDA and MAGMA modules need to be loaded. This is accomplished by running 
 ```
 $ module load cudatoolkit magma
 ```
-Either way this is done, the CUDA module needs to be loaded before the MAGMA module. 
+This will first load the CUDA toolkit then the MAGMA module. MAGMA needs access to the CUDA toolkit in order to work, because MAGMA is GPU accelerated. Because of this, the CUDA toolkit needs to be loaded before the MAGMA module.
 
 Next, the `PrgEnv-gnu` programming environment needs to be loaded instead of the Intel, Cray, or the default PGI environments. MAGMA will only work with the GNU compilers. To do this run:
 ```
@@ -100,15 +105,16 @@ To execute this code from an interactive job, simply change directory into your 
 $ aprun -n1 ./magma_sgesv
 ```
 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the MAGMA folder to your scratch directory. Next, change into that directory and run 
+```
+$ qsub titan.pbs
+```
+
+
 ####C
 -----
 #####Compiling
 Before compiling the MAGMA C code, the CUDA and MAGMA moduels must be loaded. Simply run:
-```
-$ module load cudatoolkit
-$ module load magma
-```
-or
 ```
 $ module load cudatoolkit magma
 ```
@@ -134,6 +140,11 @@ from the MAGMA folder will compile it for you. After running the make command, m
 To execute this code from an interactive job, simply change directory into your scratch space and launch it via aprun
 ```
 $ aprun -n1 ./magma_sgesv
+```
+
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the MAGMA folder to your scratch directory. Next, change into that directory and run 
+```
+$ qsub titan.pbs
 ```
 
 
@@ -203,6 +214,12 @@ Finally launch the executable using aprun
 ```
 $ aprun -n1 ./LinEq_CULA
 ```
+
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the CULA folder to your scratch directory. Next, change into that directory and run 
+```
+$ qsub titan.pbs
+```
+
 ####C
 -----
 #####Compiling
@@ -232,6 +249,12 @@ To run this in an interactive job, simply verify that the executable is in your 
 ```
 $ aprun -n1 ./LinEq_CULA
 ```
+
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the CULA folder to your scratch directory. Next, change into that directory and run 
+```
+$ qsub titan.pbs
+```
+
 
 An example of the expected output from running either the LAPACK, CULA or MAGMA code in this repository sholud look like this:
 ```
