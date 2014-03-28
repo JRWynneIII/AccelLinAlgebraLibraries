@@ -29,7 +29,7 @@ To run LAPACK code, from your scratch directory run
 $ aprun -n1 ./LinEq
 ```
 
-The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the LAPACK folder to your scratch directory. Next, change into that directory and run 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then edit `titan.example.pbs` to change <PROJID> to the appropriate project id. Save the edited file as `titan.pbs`. Next, copy the `titan.pbs` file from the LAPACK folder to your scratch directory. Finally, change into that directory and run 
 ```
 $ qsub titan.pbs
 ```
