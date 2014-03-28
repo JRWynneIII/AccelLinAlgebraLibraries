@@ -6,7 +6,8 @@ This repository contains code that will show how to use various accelerated line
 ###LAPACK
 ---------
 
-LAPACK is a CPU based linear algebra library that is provided in the `cray-libsci` module that is loaded by default when any of the programming environment modules (`PrgEnv-*`) are loaded. This module works will any programming environment
+LAPACK is a CPU based linear algebra library. `cray-libsci`, which includes LAPACK routines, is loaded by default when any of the programming environment modules (`PrgEnv-*`) are loaded. Thus calls to LAPACK functions will work for programs compiled by the wrappers provided with the programming environments.
+
 ####Fortran
 ------------
 #####Compiling
