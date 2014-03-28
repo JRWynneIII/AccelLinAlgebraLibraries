@@ -264,5 +264,17 @@ An example of the expected output from running either the LAPACK, CULA or MAGMA 
 Application 4634293 resources: utime ~3s, stime ~1s, Rss ~155520, inblocks ~706, outblocks ~960
 ```
 
+To clone this repository into your work space on Titan, the git module must first be loaded
+```
+$ module load git
+```
+
+Next, simply just run
+```
+$ git clone https://github.com/JRWynneIII/AccelLinAlgebraLibaries.git
+```
+
+This will clone the repository into a folder in your present working directory named `AccelLinAlgebraLibraries`
+
 
 >NOTE: The file `CULA/cula_lapack.f90` does not belong to me, it was taken from the CULA examples and edited by me.
