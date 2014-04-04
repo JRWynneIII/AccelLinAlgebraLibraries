@@ -100,6 +100,12 @@ from inside the `MAGMA` directory. Next, just like with the CULA example, copy t
 $ cp magma_sgesv $MEMBERWORK/<PROJID>
 ```
 
+The process for compiling the device interface version of the example is exactly the same, except use `magma.cuf` instead of `magma.f90` and use `dgesv_gpu.cuf` instead of `sgesv.f90`.
+Or simple run 
+```
+$ make fortran_device
+```
+
 #####Running
 To execute this code from an interactive job, simply change directory into your scratch space and launch it via aprun.
 ```
