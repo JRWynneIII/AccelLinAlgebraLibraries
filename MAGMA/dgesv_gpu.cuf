@@ -1,0 +1,41 @@
+Program LinearEquations
+  use magma
+  use cudafor
+  use iso_c_binding
+  Implicit none
+
+  Real(C_DOUBLE) :: A(3,3), b(3)
+  Real(C_DOUBLE),device,dimension(:,:),allocatable :: dA
+  Real(C_DOUBLE),device,dimension(:),allocatable :: dB
+  Integer(C_INT),value :: i, j, pivot(3), ok, status
+  Integer(C_INT) :: n = 3, nrhs = 1, lda = 3, lddb = 3
+  
+  status = magma_init()
+
+  allocate(dA(3,3))
+  allocate(dB(3))
+
+  A(1,1)=3.1
+  A(1,2)=1.3
+  A(1,3)=-5.7
+  A(2,1)=1.0
+  A(2,2)=-6.9
+  A(2,3)=5.8
+  A(3,1)=3.4
+  A(3,2)=7.2
+  A(3,3)=-8.8
+
+  b(1)=-1.3
+  b(2)=-0.1
+  b(3)=1.8
+
+  dA = A
+  dB = b
+
+  status = magma_dgesv_gpu(n, nrhs, dA, lda, pivot, dB, lddb, ok)
+
+  b = dB
+  do i=1, 3
+     write(*,*) b(i)
+  end do
+end
