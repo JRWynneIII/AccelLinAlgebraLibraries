@@ -6,7 +6,8 @@ This repository contains code that will show how to use various accelerated line
 ###LAPACK
 ---------
 
-LAPACK is a CPU based linear algebra library that is provided in the `cray-libsci` module that is loaded by default when any of the programming environment modules (`PrgEnv-*`) are loaded. This module works will any programming environment
+LAPACK is a CPU based linear algebra library. `cray-libsci`, which includes LAPACK routines, is loaded by default when any of the programming environment modules (`PrgEnv-*`) are loaded. Thus calls to LAPACK functions will work for programs compiled by the wrappers provided with the programming environments.
+
 ####Fortran
 ------------
 #####Compiling
@@ -55,7 +56,7 @@ To run the compiled LAPACK code, from your scratch directory run:
 $ aprun -n1 ./LinEq
 ```
 
-The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the LAPACK folder to your scratch directory. Next, change into that directory and run 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then edit `titan.example.pbs` to change <PROJID> to the appropriate project id. Save the edited file as `titan.pbs`. Next, copy the `titan.pbs` file from the LAPACK folder to your scratch directory. Finally, change into that directory and run 
 ```
 $ qsub titan.pbs
 ```
@@ -105,7 +106,7 @@ To execute this code from an interactive job, simply change directory into your 
 $ aprun -n1 ./magma_sgesv
 ```
 
-The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the MAGMA folder to your scratch directory. Next, change into that directory and run 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then edit `titan.example.pbs` to change <PROJID> to the appropriate project id. Save the edited file as `titan.pbs`. Next, copy the `titan.pbs` file from the MAGMA folder to your scratch directory. Finally, change into that directory and run 
 ```
 $ qsub titan.pbs
 ```
@@ -142,7 +143,7 @@ To execute this code from an interactive job, simply change directory into your 
 $ aprun -n1 ./magma_sgesv
 ```
 
-The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the MAGMA folder to your scratch directory. Next, change into that directory and run 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then edit `titan.example.pbs` to change <PROJID> to the appropriate project id. Save the edited file as `titan.pbs`. Next, copy the `titan.pbs` file from the MAGMA folder to your scratch directory. Finally, change into that directory and run 
 ```
 $ qsub titan.pbs
 ```
@@ -215,7 +216,7 @@ Finally launch the executable using aprun
 $ aprun -n1 ./LinEq_CULA
 ```
 
-The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the CULA folder to your scratch directory. Next, change into that directory and run 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then edit `titan.example.pbs` to change <PROJID> to the appropriate project id. Save the edited file as `titan.pbs`. Next, copy the `titan.pbs` file from the CULA folder to your scratch directory. Finally, change into that directory and run 
 ```
 $ qsub titan.pbs
 ```
@@ -250,7 +251,7 @@ To run this in an interactive job, simply verify that the executable is in your 
 $ aprun -n1 ./LinEq_CULA
 ```
 
-The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then copy the `titan.pbs` file from the CULA folder to your scratch directory. Next, change into that directory and run 
+The executable can also be run inside a batch job. Fisrt verify that the executable is in your scratch directory then edit `titan.example.pbs` to change <PROJID> to the appropriate project id. Save the edited file as `titan.pbs`. Next, copy the `titan.pbs` file from the CULA folder to your scratch directory. Finally, change into that directory and run 
 ```
 $ qsub titan.pbs
 ```
@@ -263,6 +264,18 @@ An example of the expected output from running either the LAPACK, CULA or MAGMA 
    1.00000036    
 Application 4634293 resources: utime ~3s, stime ~1s, Rss ~155520, inblocks ~706, outblocks ~960
 ```
+
+To clone this repository into your work space on Titan, the git module must first be loaded
+```
+$ module load git
+```
+
+Next, simply just run
+```
+$ git clone https://github.com/JRWynneIII/AccelLinAlgebraLibaries.git
+```
+
+This will clone the repository into a folder in your present working directory named `AccelLinAlgebraLibraries`
 
 
 >NOTE: The file `CULA/cula_lapack.f90` does not belong to me, it was taken from the CULA examples and edited by me.
