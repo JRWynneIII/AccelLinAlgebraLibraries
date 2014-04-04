@@ -4,12 +4,6 @@
 ! functions.
 module magma
   Interface
-      Integer function cublas_init() BIND (C, NAME="cublasInit")
-        use iso_c_binding
-        Implicit none
-      end function
-   end Interface
-  Interface
       Integer function magma_sgesv(n, nrhs, A, ida, ipiv,B, idb, info) BIND (C, NAME="magma_sgesv")
         use iso_c_binding
         Implicit none
