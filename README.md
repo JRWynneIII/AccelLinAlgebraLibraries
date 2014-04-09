@@ -1,12 +1,12 @@
-Accelerated Linear Algebra Libaries
+Linear Algebra Libaries
 =======================
 
-This repository contains code that will show how to use various accelerated linear algebra libraries (MAGMA and CULA) as well as how to use LAPACK on the CPU with Fortran and C on Titan. Using the accelerated linear algebra libraries over the CPU versions will take advantage of Titan's NVIDIA GPUs which when used correctly can make your code execute faster and more efficiently.
+This repository shows how to use various linear algebra libraries (MAGMA, CULA, and LAPACK) on Titan with Fortran and C. MAGMA and CULA are accelerated libraries that take advantage of Titan's GPUs.
 
 ###LAPACK
 ---------
 
-LAPACK is a CPU based linear algebra library. `cray-libsci`, which includes LAPACK routines, is loaded by default when any of the programming environment modules (`PrgEnv-*`) are loaded. Thus, calls to LAPACK functions will work for programs compiled by the wrappers provided with the programming environments automatically.
+LAPACK is a CPU based linear algebra library. The `cray-libsci` module, which includes LAPACK routines, is included in all of the programming environment modules (`PrgEnv-*`) on Titan. 
 
 ####Fortran
 ------------
@@ -22,6 +22,8 @@ $ ftn LinEq.f90 -o $MEMBERWORK/<PROJID>/LinEq
 ```
 
 >Don't forget to replace `<PROJID>` with the appropriate project ID
+
+Because the `cray-libsci` module is loaded by default, all the LAPACK functions are already availible to the complier
 
 #####Running
 To run LAPACK code, from your scratch directory, run
