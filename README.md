@@ -1,4 +1,4 @@
-Linear Algebra Libaries
+Using Linear Algebra Libaries
 =======================
 
 This repository shows how to use various linear algebra libraries (MAGMA, CULA, and LAPACK) on Titan with Fortran and C. MAGMA and CULA are accelerated libraries that take advantage of Titan's GPUs.
