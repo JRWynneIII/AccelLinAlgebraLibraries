@@ -35,20 +35,13 @@ int main(void)
     for(j = 0; j<3; j++)
       AT[j+3*a]=A[j][a];
 
-  //cudaMalloc((void**)&AT_d,9*sizeof(double));
-  //cudaMalloc((void**)&b_d,3*sizeof(double));
-
   magma_dmalloc(&AT_d, m*m);
   magma_dmalloc(&b_d, m);
   magma_dsetmatrix( m, m, AT, m, AT_d, m);
   magma_dsetmatrix(m, n, b, m, b_d, m);
 
-  //cudaMemcpy(AT_d, AT, 9*sizeof(double),cudaMemcpyHostToDevice);
-  
   magma_dgesv_gpu(m, 1, AT_d, m, pivot, b_d, m, &info);
   magma_dgetmatrix(m,n,b_d,m,b,m);
-
-  //cudaMemcpy(b,b_d,3*sizeof(double),cudaMemcpyDeviceToHost);
 
   for (i = 0; i < 3; i++)
   {
