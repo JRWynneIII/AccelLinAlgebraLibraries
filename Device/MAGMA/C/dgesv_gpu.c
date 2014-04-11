@@ -35,12 +35,17 @@ int main(void)
     for(j = 0; j<3; j++)
       AT[j+3*a]=A[j][a];
 
+  //Use magma_dmalloc to allocate matrix on device
   magma_dmalloc(&AT_d, m*m);
   magma_dmalloc(&b_d, m);
+  //Use magma_dsetmatrix to copy in the values of the matricies on the host to the matricies 
+  //allocated on the device from magma_dmalloc
   magma_dsetmatrix( m, m, AT, m, AT_d, m);
   magma_dsetmatrix(m, n, b, m, b_d, m);
 
+  //Run magma_dgesv_gpu to calculate it on the gpu
   magma_dgesv_gpu(m, 1, AT_d, m, pivot, b_d, m, &info);
+  //finally use magma_dgetmatrix to copy the matrix b_d back to the host to store in b
   magma_dgetmatrix(m,n,b_d,m,b,m);
 
   for (i = 0; i < 3; i++)
