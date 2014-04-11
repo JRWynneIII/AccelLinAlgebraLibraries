@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include "magma.h"
 
-using namespace std;
-
 int main(void)
 {
   magma_init();
