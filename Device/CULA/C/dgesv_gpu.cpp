@@ -36,6 +36,7 @@ int main(void)
 
   cudaMalloc((void**)&A_d, m*m*sizeof(culaDeviceDouble));
   cudaMalloc((void**)&b_d, m*n*sizeof(culaDeviceDouble));
+  cudaMalloc((void**)&piv_d, m*n*sizeof(culaDeviceDouble));
 
   status = culaInitialize();
   checkStatus(status);
@@ -61,7 +62,7 @@ int main(void)
   cudaMemcpy(A_d, AT, m*m*sizeof(culaDeviceDouble), cudaMemcpyHostToDevice);
   cudaMemcpy(b_d, b, m*n*sizeof(culaDeviceDouble), cudaMemcpyHostToDevice);
   cudaMemcpy(piv_d, pivot, m*n*sizeof(culaDeviceInt), cudaMemcpyHostToDevice);
-  status = culaDeviceDgesv(m, n, AT, m, piv_d, b, m);
+  status = culaDeviceDgesv(m, n, A_d, m, piv_d, b_d, m);
   checkStatus(status);
   culaShutdown();
   cudaMemcpy(b, b_d, m*n*sizeof(culaDeviceDouble), cudaMemcpyDeviceToHost);
