@@ -1,0 +1,3721 @@
+! This file contains the device interface declarations for the PG Fortran
+! compiler, using the device array syntax.
+
+module cula_lapack_device_pgfortran
+    ! culaStatus culaDeviceSbdsqr(char uplo, int n, int ncvt, int nru, int ncc, culaDeviceFloat* d, culaDeviceFloat* e, culaDeviceFloat* vt, int ldvt, culaDeviceFloat* u, int ldu, culaDeviceFloat* c, int ldc);
+    interface
+        integer function cula_device_sbdsqr(uplo,n,ncvt,nru,ncc,d,e,vt,ldvt,u,ldu,c,ldc)
+            character :: uplo
+            integer :: n
+            integer :: ncvt
+            integer :: nru
+            integer :: ncc
+            real, device, dimension(:) :: d
+            real, device, dimension(:) :: e
+            real, device, dimension(:,:) :: vt
+            integer :: ldvt
+            real, device, dimension(:,:) :: u
+            integer :: ldu
+            real, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDbdsqr(char uplo, int n, int ncvt, int nru, int ncc, culaDeviceDouble* d, culaDeviceDouble* e, culaDeviceDouble* vt, int ldvt, culaDeviceDouble* u, int ldu, culaDeviceDouble* c, int ldc);
+    interface
+        integer function cula_device_dbdsqr(uplo,n,ncvt,nru,ncc,d,e,vt,ldvt,u,ldu,c,ldc)
+            character :: uplo
+            integer :: n
+            integer :: ncvt
+            integer :: nru
+            integer :: ncc
+            double precision, device, dimension(:) :: d
+            double precision, device, dimension(:) :: e
+            double precision, device, dimension(:,:) :: vt
+            integer :: ldvt
+            double precision, device, dimension(:,:) :: u
+            integer :: ldu
+            double precision, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCbdsqr(char uplo, int n, int ncvt, int nru, int ncc, culaDeviceFloat* d, culaDeviceFloat* e, culaDeviceFloatComplex* vt, int ldvt, culaDeviceFloatComplex* u, int ldu, culaDeviceFloatComplex* c, int ldc);
+    interface
+        integer function cula_device_cbdsqr(uplo,n,ncvt,nru,ncc,d,e,vt,ldvt,u,ldu,c,ldc)
+            character :: uplo
+            integer :: n
+            integer :: ncvt
+            integer :: nru
+            integer :: ncc
+            real, device, dimension(:) :: d
+            real, device, dimension(:) :: e
+            complex, device, dimension(:,:) :: vt
+            integer :: ldvt
+            complex, device, dimension(:,:) :: u
+            integer :: ldu
+            complex, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZbdsqr(char uplo, int n, int ncvt, int nru, int ncc, culaDeviceDouble* d, culaDeviceDouble* e, culaDeviceDoubleComplex* vt, int ldvt, culaDeviceDoubleComplex* u, int ldu, culaDeviceDoubleComplex* c, int ldc);
+    interface
+        integer function cula_device_zbdsqr(uplo,n,ncvt,nru,ncc,d,e,vt,ldvt,u,ldu,c,ldc)
+            character :: uplo
+            integer :: n
+            integer :: ncvt
+            integer :: nru
+            integer :: ncc
+            double precision, device, dimension(:) :: d
+            double precision, device, dimension(:) :: e
+            double complex, device, dimension(:,:) :: vt
+            integer :: ldvt
+            double complex, device, dimension(:,:) :: u
+            integer :: ldu
+            double complex, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgbtrf(int m, int n, int kl, int ku, culaDeviceFloat* a, int lda, culaInt* ipiv);
+    interface
+        integer function cula_device_sgbtrf(m,n,kl,ku,a,lda,ipiv)
+            integer :: m
+            integer :: n
+            integer :: kl
+            integer :: ku
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgbtrf(int m, int n, int kl, int ku, culaDeviceDouble* a, int lda, culaInt* ipiv);
+    interface
+        integer function cula_device_dgbtrf(m,n,kl,ku,a,lda,ipiv)
+            integer :: m
+            integer :: n
+            integer :: kl
+            integer :: ku
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgbtrf(int m, int n, int kl, int ku, culaDeviceFloatComplex* a, int lda, culaInt* ipiv);
+    interface
+        integer function cula_device_cgbtrf(m,n,kl,ku,a,lda,ipiv)
+            integer :: m
+            integer :: n
+            integer :: kl
+            integer :: ku
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgbtrf(int m, int n, int kl, int ku, culaDeviceDoubleComplex* a, int lda, culaInt* ipiv);
+    interface
+        integer function cula_device_zgbtrf(m,n,kl,ku,a,lda,ipiv)
+            integer :: m
+            integer :: n
+            integer :: kl
+            integer :: ku
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgbtrs(char trans, int n, int kl, int ku, int nrhs, culaDeviceFloat* ab, int ldab, culaInt* ipiv, culaDeviceFloat* b, int ldb);
+    interface
+        integer function cula_device_sgbtrs(trans,n,kl,ku,nrhs,ab,ldab,ipiv,b,ldb)
+            character :: trans
+            integer :: n
+            integer :: kl
+            integer :: ku
+            integer :: nrhs
+            real, device, dimension(:,:) :: ab
+            integer :: ldab
+            integer, dimension(:) :: ipiv
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgbtrs(char trans, int n, int kl, int ku, int nrhs, culaDeviceDouble* ab, int ldab, culaInt* ipiv, culaDeviceDouble* b, int ldb);
+    interface
+        integer function cula_device_dgbtrs(trans,n,kl,ku,nrhs,ab,ldab,ipiv,b,ldb)
+            character :: trans
+            integer :: n
+            integer :: kl
+            integer :: ku
+            integer :: nrhs
+            double precision, device, dimension(:,:) :: ab
+            integer :: ldab
+            integer, dimension(:) :: ipiv
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgbtrs(char trans, int n, int kl, int ku, int nrhs, culaDeviceFloatComplex* ab, int ldab, culaInt* ipiv, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_cgbtrs(trans,n,kl,ku,nrhs,ab,ldab,ipiv,b,ldb)
+            character :: trans
+            integer :: n
+            integer :: kl
+            integer :: ku
+            integer :: nrhs
+            complex, device, dimension(:,:) :: ab
+            integer :: ldab
+            integer, dimension(:) :: ipiv
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgbtrs(char trans, int n, int kl, int ku, int nrhs, culaDeviceDoubleComplex* ab, int ldab, culaInt* ipiv, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zgbtrs(trans,n,kl,ku,nrhs,ab,ldab,ipiv,b,ldb)
+            character :: trans
+            integer :: n
+            integer :: kl
+            integer :: ku
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: ab
+            integer :: ldab
+            integer, dimension(:) :: ipiv
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgebrd(int m, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* d, culaDeviceFloat* e, culaDeviceFloat* tauq, culaDeviceFloat* taup);
+    interface
+        integer function cula_device_sgebrd(m,n,a,lda,d,e,tauq,taup)
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: d
+            real, device, dimension(:) :: e
+            real, device, dimension(:) :: tauq
+            real, device, dimension(:) :: taup
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgebrd(int m, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* d, culaDeviceDouble* e, culaDeviceDouble* tauq, culaDeviceDouble* taup);
+    interface
+        integer function cula_device_dgebrd(m,n,a,lda,d,e,tauq,taup)
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: d
+            double precision, device, dimension(:) :: e
+            double precision, device, dimension(:) :: tauq
+            double precision, device, dimension(:) :: taup
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgebrd(int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloat* d, culaDeviceFloat* e, culaDeviceFloatComplex* tauq, culaDeviceFloatComplex* taup);
+    interface
+        integer function cula_device_cgebrd(m,n,a,lda,d,e,tauq,taup)
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: d
+            real, device, dimension(:) :: e
+            complex, device, dimension(:) :: tauq
+            complex, device, dimension(:) :: taup
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgebrd(int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDouble* d, culaDeviceDouble* e, culaDeviceDoubleComplex* tauq, culaDeviceDoubleComplex* taup);
+    interface
+        integer function cula_device_zgebrd(m,n,a,lda,d,e,tauq,taup)
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: d
+            double precision, device, dimension(:) :: e
+            double complex, device, dimension(:) :: tauq
+            double complex, device, dimension(:) :: taup
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgeev(char jobvl, char jobvr, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* wr, culaDeviceFloat* wi, culaDeviceFloat* vl, int ldvl, culaDeviceFloat* vr, int ldvr);
+    interface
+        integer function cula_device_sgeev(jobvl,jobvr,n,a,lda,wr,wi,vl,ldvl,vr,ldvr)
+            character :: jobvl
+            character :: jobvr
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: wr
+            real, device, dimension(:) :: wi
+            real, device, dimension(:,:) :: vl
+            integer :: ldvl
+            real, device, dimension(:,:) :: vr
+            integer :: ldvr
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgeev(char jobvl, char jobvr, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* wr, culaDeviceDouble* wi, culaDeviceDouble* vl, int ldvl, culaDeviceDouble* vr, int ldvr);
+    interface
+        integer function cula_device_dgeev(jobvl,jobvr,n,a,lda,wr,wi,vl,ldvl,vr,ldvr)
+            character :: jobvl
+            character :: jobvr
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: wr
+            double precision, device, dimension(:) :: wi
+            double precision, device, dimension(:,:) :: vl
+            integer :: ldvl
+            double precision, device, dimension(:,:) :: vr
+            integer :: ldvr
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgeev(char jobvl, char jobvr, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* w, culaDeviceFloatComplex* vl, int ldvl, culaDeviceFloatComplex* vr, int ldvr);
+    interface
+        integer function cula_device_cgeev(jobvl,jobvr,n,a,lda,w,vl,ldvl,vr,ldvr)
+            character :: jobvl
+            character :: jobvr
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: w
+            complex, device, dimension(:,:) :: vl
+            integer :: ldvl
+            complex, device, dimension(:,:) :: vr
+            integer :: ldvr
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgeev(char jobvl, char jobvr, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* w, culaDeviceDoubleComplex* vl, int ldvl, culaDeviceDoubleComplex* vr, int ldvr);
+    interface
+        integer function cula_device_zgeev(jobvl,jobvr,n,a,lda,w,vl,ldvl,vr,ldvr)
+            character :: jobvl
+            character :: jobvr
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: w
+            double complex, device, dimension(:,:) :: vl
+            integer :: ldvl
+            double complex, device, dimension(:,:) :: vr
+            integer :: ldvr
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgehrd(int n, int ilo, int ihi, culaDeviceFloat* a, int lda, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_sgehrd(n,ilo,ihi,a,lda,tau)
+            integer :: n
+            integer :: ilo
+            integer :: ihi
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgehrd(int n, int ilo, int ihi, culaDeviceDouble* a, int lda, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dgehrd(n,ilo,ihi,a,lda,tau)
+            integer :: n
+            integer :: ilo
+            integer :: ihi
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgehrd(int n, int ilo, int ihi, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_cgehrd(n,ilo,ihi,a,lda,tau)
+            integer :: n
+            integer :: ilo
+            integer :: ihi
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgehrd(int n, int ilo, int ihi, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zgehrd(n,ilo,ihi,a,lda,tau)
+            integer :: n
+            integer :: ilo
+            integer :: ihi
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgelqf(int m, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_sgelqf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgelqf(int m, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dgelqf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgelqf(int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_cgelqf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgelqf(int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zgelqf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgels(char trans, int m, int n, int nrhs, culaDeviceFloat* a, int lda, culaDeviceFloat* b, int ldb);
+    interface
+        integer function cula_device_sgels(trans,m,n,nrhs,a,lda,b,ldb)
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: nrhs
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgels(char trans, int m, int n, int nrhs, culaDeviceDouble* a, int lda, culaDeviceDouble* b, int ldb);
+    interface
+        integer function cula_device_dgels(trans,m,n,nrhs,a,lda,b,ldb)
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: nrhs
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgels(char trans, int m, int n, int nrhs, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_cgels(trans,m,n,nrhs,a,lda,b,ldb)
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: nrhs
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgels(char trans, int m, int n, int nrhs, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zgels(trans,m,n,nrhs,a,lda,b,ldb)
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgeqlf(int m, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_sgeqlf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgeqlf(int m, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dgeqlf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgeqlf(int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_cgeqlf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgeqlf(int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zgeqlf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgeqrf(int m, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_sgeqrf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgeqrf(int m, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dgeqrf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgeqrf(int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_cgeqrf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgeqrf(int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zgeqrf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgeqrfp(int m, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_sgeqrfp(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgeqrfp(int m, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dgeqrfp(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgeqrfp(int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_cgeqrfp(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgeqrfp(int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zgeqrfp(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgeqrs(int m, int n, int nrhs, culaDeviceFloat* a, int lda, culaDeviceFloat* tau, culaDeviceFloat* b, int ldb);
+    interface
+        integer function cula_device_sgeqrs(m,n,nrhs,a,lda,tau,b,ldb)
+            integer :: m
+            integer :: n
+            integer :: nrhs
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgeqrs(int m, int n, int nrhs, culaDeviceDouble* a, int lda, culaDeviceDouble* tau, culaDeviceDouble* b, int ldb);
+    interface
+        integer function cula_device_dgeqrs(m,n,nrhs,a,lda,tau,b,ldb)
+            integer :: m
+            integer :: n
+            integer :: nrhs
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgeqrs(int m, int n, int nrhs, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_cgeqrs(m,n,nrhs,a,lda,tau,b,ldb)
+            integer :: m
+            integer :: n
+            integer :: nrhs
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgeqrs(int m, int n, int nrhs, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zgeqrs(m,n,nrhs,a,lda,tau,b,ldb)
+            integer :: m
+            integer :: n
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgerqf(int m, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_sgerqf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgerqf(int m, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dgerqf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgerqf(int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_cgerqf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgerqf(int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zgerqf(m,n,a,lda,tau)
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgesv(int n, int nrhs, culaDeviceFloat* a, int lda, culaDeviceInt* ipiv, culaDeviceFloat* b, int ldb);
+    interface
+        integer function cula_device_sgesv(n,nrhs,a,lda,ipiv,b,ldb)
+            integer :: n
+            integer :: nrhs
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgesv(int n, int nrhs, culaDeviceDouble* a, int lda, culaDeviceInt* ipiv, culaDeviceDouble* b, int ldb);
+    interface
+        integer function cula_device_dgesv(n,nrhs,a,lda,ipiv,b,ldb)
+            integer :: n
+            integer :: nrhs
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgesv(int n, int nrhs, culaDeviceFloatComplex* a, int lda, culaDeviceInt* ipiv, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_cgesv(n,nrhs,a,lda,ipiv,b,ldb)
+            integer :: n
+            integer :: nrhs
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgesv(int n, int nrhs, culaDeviceDoubleComplex* a, int lda, culaDeviceInt* ipiv, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zgesv(n,nrhs,a,lda,ipiv,b,ldb)
+            integer :: n
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDsgesv(int n, int nrhs, culaDeviceDouble* a, int lda, culaInt* ipiv, culaDeviceDouble* b, int ldb, culaDeviceDouble* x, int ldx, int* iter);
+    interface
+        integer function cula_device_dsgesv(n,nrhs,a,lda,ipiv,b,ldb,x,ldx,iter)
+            integer :: n
+            integer :: nrhs
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+            double precision, device, dimension(:,:) :: x
+            integer :: ldx
+            integer, dimension(:) :: iter
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZcgesv(int n, int nrhs, culaDeviceDoubleComplex* a, int lda, culaInt* ipiv, culaDeviceDoubleComplex* b, int ldb, culaDeviceDoubleComplex* x, int ldx, int* iter);
+    interface
+        integer function cula_device_zcgesv(n,nrhs,a,lda,ipiv,b,ldb,x,ldx,iter)
+            integer :: n
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+            double complex, device, dimension(:,:) :: x
+            integer :: ldx
+            integer, dimension(:) :: iter
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgesdd(char jobz, int m, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* s, culaDeviceFloat* u, int ldu, culaDeviceFloat* vt, int ldvt);
+    interface
+        integer function cula_device_sgesdd(jobz,m,n,a,lda,s,u,ldu,vt,ldvt)
+            character :: jobz
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: s
+            real, device, dimension(:,:) :: u
+            integer :: ldu
+            real, device, dimension(:,:) :: vt
+            integer :: ldvt
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgesdd(char jobz, int m, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* s, culaDeviceDouble* u, int ldu, culaDeviceDouble* vt, int ldvt);
+    interface
+        integer function cula_device_dgesdd(jobz,m,n,a,lda,s,u,ldu,vt,ldvt)
+            character :: jobz
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: s
+            double precision, device, dimension(:,:) :: u
+            integer :: ldu
+            double precision, device, dimension(:,:) :: vt
+            integer :: ldvt
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgesdd(char jobz, int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloat* s, culaDeviceFloatComplex* u, int ldu, culaDeviceFloatComplex* vt, int ldvt);
+    interface
+        integer function cula_device_cgesdd(jobz,m,n,a,lda,s,u,ldu,vt,ldvt)
+            character :: jobz
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: s
+            complex, device, dimension(:,:) :: u
+            integer :: ldu
+            complex, device, dimension(:,:) :: vt
+            integer :: ldvt
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgesdd(char jobz, int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDouble* s, culaDeviceDoubleComplex* u, int ldu, culaDeviceDoubleComplex* vt, int ldvt);
+    interface
+        integer function cula_device_zgesdd(jobz,m,n,a,lda,s,u,ldu,vt,ldvt)
+            character :: jobz
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: s
+            double complex, device, dimension(:,:) :: u
+            integer :: ldu
+            double complex, device, dimension(:,:) :: vt
+            integer :: ldvt
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgesvd(char jobu, char jobvt, int m, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* s, culaDeviceFloat* u, int ldu, culaDeviceFloat* vt, int ldvt);
+    interface
+        integer function cula_device_sgesvd(jobu,jobvt,m,n,a,lda,s,u,ldu,vt,ldvt)
+            character :: jobu
+            character :: jobvt
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: s
+            real, device, dimension(:,:) :: u
+            integer :: ldu
+            real, device, dimension(:,:) :: vt
+            integer :: ldvt
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgesvd(char jobu, char jobvt, int m, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* s, culaDeviceDouble* u, int ldu, culaDeviceDouble* vt, int ldvt);
+    interface
+        integer function cula_device_dgesvd(jobu,jobvt,m,n,a,lda,s,u,ldu,vt,ldvt)
+            character :: jobu
+            character :: jobvt
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: s
+            double precision, device, dimension(:,:) :: u
+            integer :: ldu
+            double precision, device, dimension(:,:) :: vt
+            integer :: ldvt
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgesvd(char jobu, char jobvt, int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloat* s, culaDeviceFloatComplex* u, int ldu, culaDeviceFloatComplex* vt, int ldvt);
+    interface
+        integer function cula_device_cgesvd(jobu,jobvt,m,n,a,lda,s,u,ldu,vt,ldvt)
+            character :: jobu
+            character :: jobvt
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: s
+            complex, device, dimension(:,:) :: u
+            integer :: ldu
+            complex, device, dimension(:,:) :: vt
+            integer :: ldvt
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgesvd(char jobu, char jobvt, int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDouble* s, culaDeviceDoubleComplex* u, int ldu, culaDeviceDoubleComplex* vt, int ldvt);
+    interface
+        integer function cula_device_zgesvd(jobu,jobvt,m,n,a,lda,s,u,ldu,vt,ldvt)
+            character :: jobu
+            character :: jobvt
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: s
+            double complex, device, dimension(:,:) :: u
+            integer :: ldu
+            double complex, device, dimension(:,:) :: vt
+            integer :: ldvt
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgetrf(int m, int n, culaDeviceFloat* a, int lda, culaDeviceInt* ipiv);
+    interface
+        integer function cula_device_sgetrf(m,n,a,lda,ipiv)
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgetrf(int m, int n, culaDeviceDouble* a, int lda, culaDeviceInt* ipiv);
+    interface
+        integer function cula_device_dgetrf(m,n,a,lda,ipiv)
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgetrf(int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceInt* ipiv);
+    interface
+        integer function cula_device_cgetrf(m,n,a,lda,ipiv)
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgetrf(int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceInt* ipiv);
+    interface
+        integer function cula_device_zgetrf(m,n,a,lda,ipiv)
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgetri(int n, culaDeviceFloat* a, int lda, culaDeviceInt* ipiv);
+    interface
+        integer function cula_device_sgetri(n,a,lda,ipiv)
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgetri(int n, culaDeviceDouble* a, int lda, culaDeviceInt* ipiv);
+    interface
+        integer function cula_device_dgetri(n,a,lda,ipiv)
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgetri(int n, culaDeviceFloatComplex* a, int lda, culaDeviceInt* ipiv);
+    interface
+        integer function cula_device_cgetri(n,a,lda,ipiv)
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgetri(int n, culaDeviceDoubleComplex* a, int lda, culaDeviceInt* ipiv);
+    interface
+        integer function cula_device_zgetri(n,a,lda,ipiv)
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgetrs(char trans, int n, int nrhs, culaDeviceFloat* a, int lda, culaDeviceInt* ipiv, culaDeviceFloat* b, int ldb);
+    interface
+        integer function cula_device_sgetrs(trans,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: trans
+            integer :: n
+            integer :: nrhs
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgetrs(char trans, int n, int nrhs, culaDeviceDouble* a, int lda, culaDeviceInt* ipiv, culaDeviceDouble* b, int ldb);
+    interface
+        integer function cula_device_dgetrs(trans,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: trans
+            integer :: n
+            integer :: nrhs
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgetrs(char trans, int n, int nrhs, culaDeviceFloatComplex* a, int lda, culaDeviceInt* ipiv, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_cgetrs(trans,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: trans
+            integer :: n
+            integer :: nrhs
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgetrs(char trans, int n, int nrhs, culaDeviceDoubleComplex* a, int lda, culaDeviceInt* ipiv, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zgetrs(trans,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: trans
+            integer :: n
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, device, dimension(:) :: ipiv
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgglse(int m, int n, int p, culaDeviceFloat* a, int lda, culaDeviceFloat* b, int ldb, culaDeviceFloat* c, culaDeviceFloat* d, culaDeviceFloat* x);
+    interface
+        integer function cula_device_sgglse(m,n,p,a,lda,b,ldb,c,d,x)
+            integer :: m
+            integer :: n
+            integer :: p
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+            real, device, dimension(:) :: c
+            real, device, dimension(:) :: d
+            real, device, dimension(:) :: x
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgglse(int m, int n, int p, culaDeviceDouble* a, int lda, culaDeviceDouble* b, int ldb, culaDeviceDouble* c, culaDeviceDouble* d, culaDeviceDouble* x);
+    interface
+        integer function cula_device_dgglse(m,n,p,a,lda,b,ldb,c,d,x)
+            integer :: m
+            integer :: n
+            integer :: p
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+            double precision, device, dimension(:) :: c
+            double precision, device, dimension(:) :: d
+            double precision, device, dimension(:) :: x
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgglse(int m, int n, int p, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* b, int ldb, culaDeviceFloatComplex* c, culaDeviceFloatComplex* d, culaDeviceFloatComplex* x);
+    interface
+        integer function cula_device_cgglse(m,n,p,a,lda,b,ldb,c,d,x)
+            integer :: m
+            integer :: n
+            integer :: p
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+            complex, device, dimension(:) :: c
+            complex, device, dimension(:) :: d
+            complex, device, dimension(:) :: x
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgglse(int m, int n, int p, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* b, int ldb, culaDeviceDoubleComplex* c, culaDeviceDoubleComplex* d, culaDeviceDoubleComplex* x);
+    interface
+        integer function cula_device_zgglse(m,n,p,a,lda,b,ldb,c,d,x)
+            integer :: m
+            integer :: n
+            integer :: p
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+            double complex, device, dimension(:) :: c
+            double complex, device, dimension(:) :: d
+            double complex, device, dimension(:) :: x
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSggrqf(int m, int p, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* taua, culaDeviceFloat* b, int ldb, culaDeviceFloat* taub);
+    interface
+        integer function cula_device_sggrqf(m,p,n,a,lda,taua,b,ldb,taub)
+            integer :: m
+            integer :: p
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: taua
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+            real, device, dimension(:) :: taub
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDggrqf(int m, int p, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* taua, culaDeviceDouble* b, int ldb, culaDeviceDouble* taub);
+    interface
+        integer function cula_device_dggrqf(m,p,n,a,lda,taua,b,ldb,taub)
+            integer :: m
+            integer :: p
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: taua
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+            double precision, device, dimension(:) :: taub
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCggrqf(int m, int p, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* taua, culaDeviceFloatComplex* b, int ldb, culaDeviceFloatComplex* taub);
+    interface
+        integer function cula_device_cggrqf(m,p,n,a,lda,taua,b,ldb,taub)
+            integer :: m
+            integer :: p
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: taua
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+            complex, device, dimension(:) :: taub
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZggrqf(int m, int p, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* taua, culaDeviceDoubleComplex* b, int ldb, culaDeviceDoubleComplex* taub);
+    interface
+        integer function cula_device_zggrqf(m,p,n,a,lda,taua,b,ldb,taub)
+            integer :: m
+            integer :: p
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: taua
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+            double complex, device, dimension(:) :: taub
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlacpy(char uplo, int m, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* b, int ldb);
+    interface
+        integer function cula_device_slacpy(uplo,m,n,a,lda,b,ldb)
+            character :: uplo
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlacpy(char uplo, int m, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* b, int ldb);
+    interface
+        integer function cula_device_dlacpy(uplo,m,n,a,lda,b,ldb)
+            character :: uplo
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClacpy(char uplo, int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_clacpy(uplo,m,n,a,lda,b,ldb)
+            character :: uplo
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlacpy(char uplo, int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zlacpy(uplo,m,n,a,lda,b,ldb)
+            character :: uplo
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlag2d(int m, int n, culaDeviceFloat* a, int lda, culaDeviceDouble* sa, int ldsa);
+    interface
+        integer function cula_device_slag2d(m,n,a,lda,sa,ldsa)
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:,:) :: sa
+            integer :: ldsa
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlag2s(int m, int n, culaDeviceDouble* a, int lda, culaDeviceFloat* sa, int ldsa);
+    interface
+        integer function cula_device_dlag2s(m,n,a,lda,sa,ldsa)
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:,:) :: sa
+            integer :: ldsa
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClag2z(int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceDoubleComplex* sa, int ldsa);
+    interface
+        integer function cula_device_clag2z(m,n,a,lda,sa,ldsa)
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:,:) :: sa
+            integer :: ldsa
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlag2c(int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceFloatComplex* sa, int ldsa);
+    interface
+        integer function cula_device_zlag2c(m,n,a,lda,sa,ldsa)
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:,:) :: sa
+            integer :: ldsa
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlange(char norm, int m, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* result);
+    interface
+        integer function cula_device_slange(norm,m,n,a,lda,result)
+            character :: norm
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: result
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlange(char norm, int m, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* result);
+    interface
+        integer function cula_device_dlange(norm,m,n,a,lda,result)
+            character :: norm
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: result
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClange(char norm, int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloat* result);
+    interface
+        integer function cula_device_clange(norm,m,n,a,lda,result)
+            character :: norm
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: result
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlange(char norm, int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDouble* result);
+    interface
+        integer function cula_device_zlange(norm,m,n,a,lda,result)
+            character :: norm
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: result
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlanhe(char norm, char uplo, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* result);
+    interface
+        integer function cula_device_slanhe(norm,uplo,n,a,lda,result)
+            character :: norm
+            character :: uplo
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: result
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlanhe(char norm, char uplo, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* result);
+    interface
+        integer function cula_device_dlanhe(norm,uplo,n,a,lda,result)
+            character :: norm
+            character :: uplo
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: result
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClanhe(char norm, char uplo, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloat* result);
+    interface
+        integer function cula_device_clanhe(norm,uplo,n,a,lda,result)
+            character :: norm
+            character :: uplo
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: result
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlanhe(char norm, char uplo, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDouble* result);
+    interface
+        integer function cula_device_zlanhe(norm,uplo,n,a,lda,result)
+            character :: norm
+            character :: uplo
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: result
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlar2v(int n, culaDeviceFloat* x, culaDeviceFloat* y, culaDeviceFloat* z, int incx, culaDeviceFloat* c, culaDeviceFloat* s, int incc);
+    interface
+        integer function cula_device_slar2v(n,x,y,z,incx,c,s,incc)
+            integer :: n
+            real, device, dimension(:) :: x
+            real, device, dimension(:) :: y
+            real, device, dimension(:) :: z
+            integer :: incx
+            real, device, dimension(:) :: c
+            real, device, dimension(:) :: s
+            integer :: incc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlar2v(int n, culaDeviceDouble* x, culaDeviceDouble* y, culaDeviceDouble* z, int incx, culaDeviceDouble* c, culaDeviceDouble* s, int incc);
+    interface
+        integer function cula_device_dlar2v(n,x,y,z,incx,c,s,incc)
+            integer :: n
+            double precision, device, dimension(:) :: x
+            double precision, device, dimension(:) :: y
+            double precision, device, dimension(:) :: z
+            integer :: incx
+            double precision, device, dimension(:) :: c
+            double precision, device, dimension(:) :: s
+            integer :: incc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClar2v(int n, culaDeviceFloatComplex* x, culaDeviceFloatComplex* y, culaDeviceFloatComplex* z, int incx, culaDeviceFloat* c, culaDeviceFloatComplex* s, int incc);
+    interface
+        integer function cula_device_clar2v(n,x,y,z,incx,c,s,incc)
+            integer :: n
+            complex, device, dimension(:) :: x
+            complex, device, dimension(:) :: y
+            complex, device, dimension(:) :: z
+            integer :: incx
+            real, device, dimension(:) :: c
+            complex, device, dimension(:) :: s
+            integer :: incc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlar2v(int n, culaDeviceDoubleComplex* x, culaDeviceDoubleComplex* y, culaDeviceDoubleComplex* z, int incx, culaDeviceDouble* c, culaDeviceDoubleComplex* s, int incc);
+    interface
+        integer function cula_device_zlar2v(n,x,y,z,incx,c,s,incc)
+            integer :: n
+            double complex, device, dimension(:) :: x
+            double complex, device, dimension(:) :: y
+            double complex, device, dimension(:) :: z
+            integer :: incx
+            double precision, device, dimension(:) :: c
+            double complex, device, dimension(:) :: s
+            integer :: incc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlarfb(char side, char trans, char direct, char storev, int m, int n, int k, culaDeviceFloat* v, int ldv, culaDeviceFloat* t, int ldt, culaDeviceFloat* c, int ldc);
+    interface
+        integer function cula_device_slarfb(side,trans,direct,storev,m,n,k,v,ldv,t,ldt,c,ldc)
+            character :: side
+            character :: trans
+            character :: direct
+            character :: storev
+            integer :: m
+            integer :: n
+            integer :: k
+            real, device, dimension(:,:) :: v
+            integer :: ldv
+            real, device, dimension(:,:) :: t
+            integer :: ldt
+            real, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlarfb(char side, char trans, char direct, char storev, int m, int n, int k, culaDeviceDouble* v, int ldv, culaDeviceDouble* t, int ldt, culaDeviceDouble* c, int ldc);
+    interface
+        integer function cula_device_dlarfb(side,trans,direct,storev,m,n,k,v,ldv,t,ldt,c,ldc)
+            character :: side
+            character :: trans
+            character :: direct
+            character :: storev
+            integer :: m
+            integer :: n
+            integer :: k
+            double precision, device, dimension(:,:) :: v
+            integer :: ldv
+            double precision, device, dimension(:,:) :: t
+            integer :: ldt
+            double precision, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClarfb(char side, char trans, char direct, char storev, int m, int n, int k, culaDeviceFloatComplex* v, int ldv, culaDeviceFloatComplex* t, int ldt, culaDeviceFloatComplex* c, int ldc);
+    interface
+        integer function cula_device_clarfb(side,trans,direct,storev,m,n,k,v,ldv,t,ldt,c,ldc)
+            character :: side
+            character :: trans
+            character :: direct
+            character :: storev
+            integer :: m
+            integer :: n
+            integer :: k
+            complex, device, dimension(:,:) :: v
+            integer :: ldv
+            complex, device, dimension(:,:) :: t
+            integer :: ldt
+            complex, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlarfb(char side, char trans, char direct, char storev, int m, int n, int k, culaDeviceDoubleComplex* v, int ldv, culaDeviceDoubleComplex* t, int ldt, culaDeviceDoubleComplex* c, int ldc);
+    interface
+        integer function cula_device_zlarfb(side,trans,direct,storev,m,n,k,v,ldv,t,ldt,c,ldc)
+            character :: side
+            character :: trans
+            character :: direct
+            character :: storev
+            integer :: m
+            integer :: n
+            integer :: k
+            double complex, device, dimension(:,:) :: v
+            integer :: ldv
+            double complex, device, dimension(:,:) :: t
+            integer :: ldt
+            double complex, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlarfg(int n, culaDeviceFloat* alpha, culaDeviceFloat* x, int incx, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_slarfg(n,alpha,x,incx,tau)
+            integer :: n
+            real, device, dimension(:) :: alpha
+            real, device, dimension(:) :: x
+            integer :: incx
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlarfg(int n, culaDeviceDouble* alpha, culaDeviceDouble* x, int incx, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dlarfg(n,alpha,x,incx,tau)
+            integer :: n
+            double precision, device, dimension(:) :: alpha
+            double precision, device, dimension(:) :: x
+            integer :: incx
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClarfg(int n, culaDeviceFloatComplex* alpha, culaDeviceFloatComplex* x, int incx, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_clarfg(n,alpha,x,incx,tau)
+            integer :: n
+            complex, device, dimension(:) :: alpha
+            complex, device, dimension(:) :: x
+            integer :: incx
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlarfg(int n, culaDeviceDoubleComplex* alpha, culaDeviceDoubleComplex* x, int incx, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zlarfg(n,alpha,x,incx,tau)
+            integer :: n
+            double complex, device, dimension(:) :: alpha
+            double complex, device, dimension(:) :: x
+            integer :: incx
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlargv(int n, culaDeviceFloat* x, int incx, culaDeviceFloat* y, int incy, culaDeviceFloat* c, int incc);
+    interface
+        integer function cula_device_slargv(n,x,incx,y,incy,c,incc)
+            integer :: n
+            real, device, dimension(:) :: x
+            integer :: incx
+            real, device, dimension(:) :: y
+            integer :: incy
+            real, device, dimension(:) :: c
+            integer :: incc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlargv(int n, culaDeviceDouble* x, int incx, culaDeviceDouble* y, int incy, culaDeviceDouble* c, int incc);
+    interface
+        integer function cula_device_dlargv(n,x,incx,y,incy,c,incc)
+            integer :: n
+            double precision, device, dimension(:) :: x
+            integer :: incx
+            double precision, device, dimension(:) :: y
+            integer :: incy
+            double precision, device, dimension(:) :: c
+            integer :: incc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClargv(int n, culaDeviceFloatComplex* x, int incx, culaDeviceFloatComplex* y, int incy, culaDeviceFloat* c, int incc);
+    interface
+        integer function cula_device_clargv(n,x,incx,y,incy,c,incc)
+            integer :: n
+            complex, device, dimension(:) :: x
+            integer :: incx
+            complex, device, dimension(:) :: y
+            integer :: incy
+            real, device, dimension(:) :: c
+            integer :: incc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlargv(int n, culaDeviceDoubleComplex* x, int incx, culaDeviceDoubleComplex* y, int incy, culaDeviceDouble* c, int incc);
+    interface
+        integer function cula_device_zlargv(n,x,incx,y,incy,c,incc)
+            integer :: n
+            double complex, device, dimension(:) :: x
+            integer :: incx
+            double complex, device, dimension(:) :: y
+            integer :: incy
+            double precision, device, dimension(:) :: c
+            integer :: incc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlartv(int n, culaDeviceFloat* x, int incx, culaDeviceFloat* y, int incy, culaDeviceFloat* c, culaDeviceFloat* s, int incc);
+    interface
+        integer function cula_device_slartv(n,x,incx,y,incy,c,s,incc)
+            integer :: n
+            real, device, dimension(:) :: x
+            integer :: incx
+            real, device, dimension(:) :: y
+            integer :: incy
+            real, device, dimension(:) :: c
+            real, device, dimension(:) :: s
+            integer :: incc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlartv(int n, culaDeviceDouble* x, int incx, culaDeviceDouble* y, int incy, culaDeviceDouble* c, culaDeviceDouble* s, int incc);
+    interface
+        integer function cula_device_dlartv(n,x,incx,y,incy,c,s,incc)
+            integer :: n
+            double precision, device, dimension(:) :: x
+            integer :: incx
+            double precision, device, dimension(:) :: y
+            integer :: incy
+            double precision, device, dimension(:) :: c
+            double precision, device, dimension(:) :: s
+            integer :: incc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClartv(int n, culaDeviceFloatComplex* x, int incx, culaDeviceFloatComplex* y, int incy, culaDeviceFloat* c, culaDeviceFloatComplex* s, int incc);
+    interface
+        integer function cula_device_clartv(n,x,incx,y,incy,c,s,incc)
+            integer :: n
+            complex, device, dimension(:) :: x
+            integer :: incx
+            complex, device, dimension(:) :: y
+            integer :: incy
+            real, device, dimension(:) :: c
+            complex, device, dimension(:) :: s
+            integer :: incc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlartv(int n, culaDeviceDoubleComplex* x, int incx, culaDeviceDoubleComplex* y, int incy, culaDeviceDouble* c, culaDeviceDoubleComplex* s, int incc);
+    interface
+        integer function cula_device_zlartv(n,x,incx,y,incy,c,s,incc)
+            integer :: n
+            double complex, device, dimension(:) :: x
+            integer :: incx
+            double complex, device, dimension(:) :: y
+            integer :: incy
+            double precision, device, dimension(:) :: c
+            double complex, device, dimension(:) :: s
+            integer :: incc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlascl(char type, int kl, int ku, culaFloat cfrom, culaFloat cto, int m, int n, culaDeviceFloat* a, int lda);
+    interface
+        integer function cula_device_slascl(type,kl,ku,cfrom,cto,m,n,a,lda)
+            character :: type
+            integer :: kl
+            integer :: ku
+            real :: cfrom
+            real :: cto
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlascl(char type, int kl, int ku, culaDouble cfrom, culaDouble cto, int m, int n, culaDeviceDouble* a, int lda);
+    interface
+        integer function cula_device_dlascl(type,kl,ku,cfrom,cto,m,n,a,lda)
+            character :: type
+            integer :: kl
+            integer :: ku
+            double precision :: cfrom
+            double precision :: cto
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClascl(char type, int kl, int ku, culaFloat cfrom, culaFloat cto, int m, int n, culaDeviceFloatComplex* a, int lda);
+    interface
+        integer function cula_device_clascl(type,kl,ku,cfrom,cto,m,n,a,lda)
+            character :: type
+            integer :: kl
+            integer :: ku
+            real :: cfrom
+            real :: cto
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlascl(char type, int kl, int ku, culaDouble cfrom, culaDouble cto, int m, int n, culaDeviceDoubleComplex* a, int lda);
+    interface
+        integer function cula_device_zlascl(type,kl,ku,cfrom,cto,m,n,a,lda)
+            character :: type
+            integer :: kl
+            integer :: ku
+            double precision :: cfrom
+            double precision :: cto
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlaset(char uplo, int m, int n, culaFloat alpha, culaFloat beta, culaDeviceFloat* a, int lda);
+    interface
+        integer function cula_device_slaset(uplo,m,n,alpha,beta,a,lda)
+            character :: uplo
+            integer :: m
+            integer :: n
+            real :: alpha
+            real :: beta
+            real, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlaset(char uplo, int m, int n, culaDouble alpha, culaDouble beta, culaDeviceDouble* a, int lda);
+    interface
+        integer function cula_device_dlaset(uplo,m,n,alpha,beta,a,lda)
+            character :: uplo
+            integer :: m
+            integer :: n
+            double precision :: alpha
+            double precision :: beta
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClaset(char uplo, int m, int n, culaFloatComplex alpha, culaFloatComplex beta, culaDeviceFloatComplex* a, int lda);
+    interface
+        integer function cula_device_claset(uplo,m,n,alpha,beta,a,lda)
+            character :: uplo
+            integer :: m
+            integer :: n
+            complex :: alpha
+            complex :: beta
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlaset(char uplo, int m, int n, culaDoubleComplex alpha, culaDoubleComplex beta, culaDeviceDoubleComplex* a, int lda);
+    interface
+        integer function cula_device_zlaset(uplo,m,n,alpha,beta,a,lda)
+            character :: uplo
+            integer :: m
+            integer :: n
+            double complex :: alpha
+            double complex :: beta
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlasr(char side, char pivot, char direct, int m, int n, culaDeviceFloat* c, culaDeviceFloat* s, culaDeviceFloat* a, int lda);
+    interface
+        integer function cula_device_slasr(side,pivot,direct,m,n,c,s,a,lda)
+            character :: side
+            character :: pivot
+            character :: direct
+            integer :: m
+            integer :: n
+            real, device, dimension(:) :: c
+            real, device, dimension(:) :: s
+            real, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlasr(char side, char pivot, char direct, int m, int n, culaDeviceDouble* c, culaDeviceDouble* s, culaDeviceDouble* a, int lda);
+    interface
+        integer function cula_device_dlasr(side,pivot,direct,m,n,c,s,a,lda)
+            character :: side
+            character :: pivot
+            character :: direct
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:) :: c
+            double precision, device, dimension(:) :: s
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClasr(char side, char pivot, char direct, int m, int n, culaDeviceFloat* c, culaDeviceFloat* s, culaDeviceFloatComplex* a, int lda);
+    interface
+        integer function cula_device_clasr(side,pivot,direct,m,n,c,s,a,lda)
+            character :: side
+            character :: pivot
+            character :: direct
+            integer :: m
+            integer :: n
+            real, device, dimension(:) :: c
+            real, device, dimension(:) :: s
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlasr(char side, char pivot, char direct, int m, int n, culaDeviceDouble* c, culaDeviceDouble* s, culaDeviceDoubleComplex* a, int lda);
+    interface
+        integer function cula_device_zlasr(side,pivot,direct,m,n,c,s,a,lda)
+            character :: side
+            character :: pivot
+            character :: direct
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:) :: c
+            double precision, device, dimension(:) :: s
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlaswp(int n, culaDeviceFloat* a, int lda, int k1, int k2, culaInt* ipiv, int incx);
+    interface
+        integer function cula_device_slaswp(n,a,lda,k1,k2,ipiv,incx)
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            integer :: k1
+            integer :: k2
+            integer, dimension(:) :: ipiv
+            integer :: incx
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlaswp(int n, culaDeviceDouble* a, int lda, int k1, int k2, culaInt* ipiv, int incx);
+    interface
+        integer function cula_device_dlaswp(n,a,lda,k1,k2,ipiv,incx)
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            integer :: k1
+            integer :: k2
+            integer, dimension(:) :: ipiv
+            integer :: incx
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClaswp(int n, culaDeviceFloatComplex* a, int lda, int k1, int k2, culaInt* ipiv, int incx);
+    interface
+        integer function cula_device_claswp(n,a,lda,k1,k2,ipiv,incx)
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer :: k1
+            integer :: k2
+            integer, dimension(:) :: ipiv
+            integer :: incx
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlaswp(int n, culaDeviceDoubleComplex* a, int lda, int k1, int k2, culaInt* ipiv, int incx);
+    interface
+        integer function cula_device_zlaswp(n,a,lda,k1,k2,ipiv,incx)
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer :: k1
+            integer :: k2
+            integer, dimension(:) :: ipiv
+            integer :: incx
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlaswpcol(int n, culaDeviceFloat* a, int lda, int k1, int k2, culaInt* ipiv, int incx);
+    interface
+        integer function cula_device_slaswpcol(n,a,lda,k1,k2,ipiv,incx)
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            integer :: k1
+            integer :: k2
+            integer, dimension(:) :: ipiv
+            integer :: incx
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlaswpcol(int n, culaDeviceDouble* a, int lda, int k1, int k2, culaInt* ipiv, int incx);
+    interface
+        integer function cula_device_dlaswpcol(n,a,lda,k1,k2,ipiv,incx)
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            integer :: k1
+            integer :: k2
+            integer, dimension(:) :: ipiv
+            integer :: incx
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClaswpcol(int n, culaDeviceFloatComplex* a, int lda, int k1, int k2, culaInt* ipiv, int incx);
+    interface
+        integer function cula_device_claswpcol(n,a,lda,k1,k2,ipiv,incx)
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer :: k1
+            integer :: k2
+            integer, dimension(:) :: ipiv
+            integer :: incx
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlaswpcol(int n, culaDeviceDoubleComplex* a, int lda, int k1, int k2, culaInt* ipiv, int incx);
+    interface
+        integer function cula_device_zlaswpcol(n,a,lda,k1,k2,ipiv,incx)
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer :: k1
+            integer :: k2
+            integer, dimension(:) :: ipiv
+            integer :: incx
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSlat2d(char uplo, int n, culaDeviceFloat* a, int lda, culaDeviceDouble* sa, int ldsa);
+    interface
+        integer function cula_device_slat2d(uplo,n,a,lda,sa,ldsa)
+            character :: uplo
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:,:) :: sa
+            integer :: ldsa
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDlat2s(char uplo, int n, culaDeviceDouble* a, int lda, culaDeviceFloat* sa, int ldsa);
+    interface
+        integer function cula_device_dlat2s(uplo,n,a,lda,sa,ldsa)
+            character :: uplo
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:,:) :: sa
+            integer :: ldsa
+        end function
+    end interface
+
+    ! culaStatus culaDeviceClat2z(char uplo, int n, culaDeviceFloatComplex* a, int lda, culaDeviceDoubleComplex* sa, int ldsa);
+    interface
+        integer function cula_device_clat2z(uplo,n,a,lda,sa,ldsa)
+            character :: uplo
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:,:) :: sa
+            integer :: ldsa
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZlat2c(char uplo, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceFloatComplex* sa, int ldsa);
+    interface
+        integer function cula_device_zlat2c(uplo,n,a,lda,sa,ldsa)
+            character :: uplo
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:,:) :: sa
+            integer :: ldsa
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSorgbr(char vect, int m, int n, int k, culaDeviceFloat* a, int lda, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_sorgbr(vect,m,n,k,a,lda,tau)
+            character :: vect
+            integer :: m
+            integer :: n
+            integer :: k
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDorgbr(char vect, int m, int n, int k, culaDeviceDouble* a, int lda, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dorgbr(vect,m,n,k,a,lda,tau)
+            character :: vect
+            integer :: m
+            integer :: n
+            integer :: k
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCungbr(char vect, int m, int n, int k, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_cungbr(vect,m,n,k,a,lda,tau)
+            character :: vect
+            integer :: m
+            integer :: n
+            integer :: k
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZungbr(char vect, int m, int n, int k, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zungbr(vect,m,n,k,a,lda,tau)
+            character :: vect
+            integer :: m
+            integer :: n
+            integer :: k
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSorghr(int n, int ilo, int ihi, culaDeviceFloat* a, int lda, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_sorghr(n,ilo,ihi,a,lda,tau)
+            integer :: n
+            integer :: ilo
+            integer :: ihi
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDorghr(int n, int ilo, int ihi, culaDeviceDouble* a, int lda, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dorghr(n,ilo,ihi,a,lda,tau)
+            integer :: n
+            integer :: ilo
+            integer :: ihi
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCunghr(int n, int ilo, int ihi, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_cunghr(n,ilo,ihi,a,lda,tau)
+            integer :: n
+            integer :: ilo
+            integer :: ihi
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZunghr(int n, int ilo, int ihi, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zunghr(n,ilo,ihi,a,lda,tau)
+            integer :: n
+            integer :: ilo
+            integer :: ihi
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSorglq(int m, int n, int k, culaDeviceFloat* a, int lda, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_sorglq(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDorglq(int m, int n, int k, culaDeviceDouble* a, int lda, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dorglq(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCunglq(int m, int n, int k, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_cunglq(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZunglq(int m, int n, int k, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zunglq(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSorgql(int m, int n, int k, culaDeviceFloat* a, int lda, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_sorgql(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDorgql(int m, int n, int k, culaDeviceDouble* a, int lda, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dorgql(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCungql(int m, int n, int k, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_cungql(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZungql(int m, int n, int k, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zungql(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSorgqr(int m, int n, int k, culaDeviceFloat* a, int lda, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_sorgqr(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDorgqr(int m, int n, int k, culaDeviceDouble* a, int lda, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dorgqr(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCungqr(int m, int n, int k, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_cungqr(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZungqr(int m, int n, int k, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zungqr(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSorgrq(int m, int n, int k, culaDeviceFloat* a, int lda, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_sorgrq(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDorgrq(int m, int n, int k, culaDeviceDouble* a, int lda, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dorgrq(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCungrq(int m, int n, int k, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_cungrq(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZungrq(int m, int n, int k, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zungrq(m,n,k,a,lda,tau)
+            integer :: m
+            integer :: n
+            integer :: k
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSormlq(char side, char trans, int m, int n, int k, culaDeviceFloat* a, int lda, culaDeviceFloat* tau, culaDeviceFloat* c, int ldc);
+    interface
+        integer function cula_device_sormlq(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+            real, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDormlq(char side, char trans, int m, int n, int k, culaDeviceDouble* a, int lda, culaDeviceDouble* tau, culaDeviceDouble* c, int ldc);
+    interface
+        integer function cula_device_dormlq(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+            double precision, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCunmlq(char side, char trans, int m, int n, int k, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau, culaDeviceFloatComplex* c, int ldc);
+    interface
+        integer function cula_device_cunmlq(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+            complex, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZunmlq(char side, char trans, int m, int n, int k, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau, culaDeviceDoubleComplex* c, int ldc);
+    interface
+        integer function cula_device_zunmlq(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+            double complex, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSormql(char side, char trans, int m, int n, int k, culaDeviceFloat* a, int lda, culaDeviceFloat* tau, culaDeviceFloat* c, int ldc);
+    interface
+        integer function cula_device_sormql(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+            real, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDormql(char side, char trans, int m, int n, int k, culaDeviceDouble* a, int lda, culaDeviceDouble* tau, culaDeviceDouble* c, int ldc);
+    interface
+        integer function cula_device_dormql(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+            double precision, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCunmql(char side, char trans, int m, int n, int k, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau, culaDeviceFloatComplex* c, int ldc);
+    interface
+        integer function cula_device_cunmql(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+            complex, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZunmql(char side, char trans, int m, int n, int k, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau, culaDeviceDoubleComplex* c, int ldc);
+    interface
+        integer function cula_device_zunmql(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+            double complex, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSormqr(char side, char trans, int m, int n, int k, culaDeviceFloat* a, int lda, culaDeviceFloat* tau, culaDeviceFloat* c, int ldc);
+    interface
+        integer function cula_device_sormqr(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+            real, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDormqr(char side, char trans, int m, int n, int k, culaDeviceDouble* a, int lda, culaDeviceDouble* tau, culaDeviceDouble* c, int ldc);
+    interface
+        integer function cula_device_dormqr(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+            double precision, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCunmqr(char side, char trans, int m, int n, int k, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau, culaDeviceFloatComplex* c, int ldc);
+    interface
+        integer function cula_device_cunmqr(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+            complex, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZunmqr(char side, char trans, int m, int n, int k, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau, culaDeviceDoubleComplex* c, int ldc);
+    interface
+        integer function cula_device_zunmqr(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+            double complex, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSormrq(char side, char trans, int m, int n, int k, culaDeviceFloat* a, int lda, culaDeviceFloat* tau, culaDeviceFloat* c, int ldc);
+    interface
+        integer function cula_device_sormrq(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: tau
+            real, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDormrq(char side, char trans, int m, int n, int k, culaDeviceDouble* a, int lda, culaDeviceDouble* tau, culaDeviceDouble* c, int ldc);
+    interface
+        integer function cula_device_dormrq(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: tau
+            double precision, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCunmrq(char side, char trans, int m, int n, int k, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* tau, culaDeviceFloatComplex* c, int ldc);
+    interface
+        integer function cula_device_cunmrq(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:) :: tau
+            complex, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZunmrq(char side, char trans, int m, int n, int k, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* tau, culaDeviceDoubleComplex* c, int ldc);
+    interface
+        integer function cula_device_zunmrq(side,trans,m,n,k,a,lda,tau,c,ldc)
+            character :: side
+            character :: trans
+            integer :: m
+            integer :: n
+            integer :: k
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:) :: tau
+            double complex, device, dimension(:,:) :: c
+            integer :: ldc
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSpbtrf(char uplo, int n, int kd, culaDeviceFloat* ab, int ldab);
+    interface
+        integer function cula_device_spbtrf(uplo,n,kd,ab,ldab)
+            character :: uplo
+            integer :: n
+            integer :: kd
+            real, device, dimension(:,:) :: ab
+            integer :: ldab
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDpbtrf(char uplo, int n, int kd, culaDeviceDouble* ab, int ldab);
+    interface
+        integer function cula_device_dpbtrf(uplo,n,kd,ab,ldab)
+            character :: uplo
+            integer :: n
+            integer :: kd
+            double precision, device, dimension(:,:) :: ab
+            integer :: ldab
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCpbtrf(char uplo, int n, int kd, culaDeviceFloatComplex* ab, int ldab);
+    interface
+        integer function cula_device_cpbtrf(uplo,n,kd,ab,ldab)
+            character :: uplo
+            integer :: n
+            integer :: kd
+            complex, device, dimension(:,:) :: ab
+            integer :: ldab
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZpbtrf(char uplo, int n, int kd, culaDeviceDoubleComplex* ab, int ldab);
+    interface
+        integer function cula_device_zpbtrf(uplo,n,kd,ab,ldab)
+            character :: uplo
+            integer :: n
+            integer :: kd
+            double complex, device, dimension(:,:) :: ab
+            integer :: ldab
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSposv(char uplo, int n, int nrhs, culaDeviceFloat* a, int lda, culaDeviceFloat* b, int ldb);
+    interface
+        integer function cula_device_sposv(uplo,n,nrhs,a,lda,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDposv(char uplo, int n, int nrhs, culaDeviceDouble* a, int lda, culaDeviceDouble* b, int ldb);
+    interface
+        integer function cula_device_dposv(uplo,n,nrhs,a,lda,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCposv(char uplo, int n, int nrhs, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_cposv(uplo,n,nrhs,a,lda,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZposv(char uplo, int n, int nrhs, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zposv(uplo,n,nrhs,a,lda,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDsposv(char uplo, int n, int nrhs, culaDeviceDouble* a, int lda, culaDeviceDouble* b, int ldb, culaDeviceDouble* x, int ldx, int* iter);
+    interface
+        integer function cula_device_dsposv(uplo,n,nrhs,a,lda,b,ldb,x,ldx,iter)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+            double precision, device, dimension(:,:) :: x
+            integer :: ldx
+            integer, dimension(:) :: iter
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZcposv(char uplo, int n, int nrhs, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* b, int ldb, culaDeviceDoubleComplex* x, int ldx, int* iter);
+    interface
+        integer function cula_device_zcposv(uplo,n,nrhs,a,lda,b,ldb,x,ldx,iter)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+            double complex, device, dimension(:,:) :: x
+            integer :: ldx
+            integer, dimension(:) :: iter
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSpotrf(char uplo, int n, culaDeviceFloat* a, int lda);
+    interface
+        integer function cula_device_spotrf(uplo,n,a,lda)
+            character :: uplo
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDpotrf(char uplo, int n, culaDeviceDouble* a, int lda);
+    interface
+        integer function cula_device_dpotrf(uplo,n,a,lda)
+            character :: uplo
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCpotrf(char uplo, int n, culaDeviceFloatComplex* a, int lda);
+    interface
+        integer function cula_device_cpotrf(uplo,n,a,lda)
+            character :: uplo
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZpotrf(char uplo, int n, culaDeviceDoubleComplex* a, int lda);
+    interface
+        integer function cula_device_zpotrf(uplo,n,a,lda)
+            character :: uplo
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSpotri(char uplo, int n, culaDeviceFloat* a, int lda);
+    interface
+        integer function cula_device_spotri(uplo,n,a,lda)
+            character :: uplo
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDpotri(char uplo, int n, culaDeviceDouble* a, int lda);
+    interface
+        integer function cula_device_dpotri(uplo,n,a,lda)
+            character :: uplo
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCpotri(char uplo, int n, culaDeviceFloatComplex* a, int lda);
+    interface
+        integer function cula_device_cpotri(uplo,n,a,lda)
+            character :: uplo
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZpotri(char uplo, int n, culaDeviceDoubleComplex* a, int lda);
+    interface
+        integer function cula_device_zpotri(uplo,n,a,lda)
+            character :: uplo
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSpotrs(char uplo, int n, int nrhs, culaDeviceFloat* a, int lda, culaDeviceFloat* b, int ldb);
+    interface
+        integer function cula_device_spotrs(uplo,n,nrhs,a,lda,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDpotrs(char uplo, int n, int nrhs, culaDeviceDouble* a, int lda, culaDeviceDouble* b, int ldb);
+    interface
+        integer function cula_device_dpotrs(uplo,n,nrhs,a,lda,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCpotrs(char uplo, int n, int nrhs, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_cpotrs(uplo,n,nrhs,a,lda,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZpotrs(char uplo, int n, int nrhs, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zpotrs(uplo,n,nrhs,a,lda,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSpptrf(char uplo, int n, culaDeviceFloat* a);
+    interface
+        integer function cula_device_spptrf(uplo,n,a)
+            character :: uplo
+            integer :: n
+            real, device, dimension(:) :: a
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDpptrf(char uplo, int n, culaDeviceDouble* a);
+    interface
+        integer function cula_device_dpptrf(uplo,n,a)
+            character :: uplo
+            integer :: n
+            double precision, device, dimension(:) :: a
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCpptrf(char uplo, int n, culaDeviceFloatComplex* a);
+    interface
+        integer function cula_device_cpptrf(uplo,n,a)
+            character :: uplo
+            integer :: n
+            complex, device, dimension(:) :: a
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZpptrf(char uplo, int n, culaDeviceDoubleComplex* a);
+    interface
+        integer function cula_device_zpptrf(uplo,n,a)
+            character :: uplo
+            integer :: n
+            double complex, device, dimension(:) :: a
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSstebz(char rang, char order, int n, float vl, float vu, int il, int iu, float abstol, culaDeviceFloat* d, culaDeviceFloat* e, int* m, int* nsplit, culaDeviceFloat* w, culaDeviceInt* iblock, culaDeviceInt* isplit);
+    interface
+        integer function cula_device_sstebz(rang,order,n,vl,vu,il,iu,abstol,d,e,m,nsplit,w,iblock,isplit)
+            character :: rang
+            character :: order
+            integer :: n
+            real :: vl
+            real :: vu
+            integer :: il
+            integer :: iu
+            real :: abstol
+            real, device, dimension(:) :: d
+            real, device, dimension(:) :: e
+            integer, dimension(:) :: m
+            integer, dimension(:) :: nsplit
+            real, device, dimension(:) :: w
+            integer, device, dimension(:) :: iblock
+            integer, device, dimension(:) :: isplit
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDstebz(char rang, char order, int n, double vl, double vu, int il, int iu, double abstol, culaDeviceDouble* d, culaDeviceDouble* e, int* m, int* nsplit, culaDeviceDouble* w, culaDeviceInt* iblock, culaDeviceInt* isplit);
+    interface
+        integer function cula_device_dstebz(rang,order,n,vl,vu,il,iu,abstol,d,e,m,nsplit,w,iblock,isplit)
+            character :: rang
+            character :: order
+            integer :: n
+            double precision :: vl
+            double precision :: vu
+            integer :: il
+            integer :: iu
+            double precision :: abstol
+            double precision, device, dimension(:) :: d
+            double precision, device, dimension(:) :: e
+            integer, dimension(:) :: m
+            integer, dimension(:) :: nsplit
+            double precision, device, dimension(:) :: w
+            integer, device, dimension(:) :: iblock
+            integer, device, dimension(:) :: isplit
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSsteqr(char compz, int n, culaDeviceFloat* d, culaDeviceFloat* e, culaDeviceFloat* z, int ldz);
+    interface
+        integer function cula_device_ssteqr(compz,n,d,e,z,ldz)
+            character :: compz
+            integer :: n
+            real, device, dimension(:) :: d
+            real, device, dimension(:) :: e
+            real, device, dimension(:,:) :: z
+            integer :: ldz
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDsteqr(char compz, int n, culaDeviceDouble* d, culaDeviceDouble* e, culaDeviceDouble* z, int ldz);
+    interface
+        integer function cula_device_dsteqr(compz,n,d,e,z,ldz)
+            character :: compz
+            integer :: n
+            double precision, device, dimension(:) :: d
+            double precision, device, dimension(:) :: e
+            double precision, device, dimension(:,:) :: z
+            integer :: ldz
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCsteqr(char compz, int n, culaDeviceFloat* d, culaDeviceFloat* e, culaDeviceFloatComplex* z, int ldz);
+    interface
+        integer function cula_device_csteqr(compz,n,d,e,z,ldz)
+            character :: compz
+            integer :: n
+            real, device, dimension(:) :: d
+            real, device, dimension(:) :: e
+            complex, device, dimension(:,:) :: z
+            integer :: ldz
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZsteqr(char compz, int n, culaDeviceDouble* d, culaDeviceDouble* e, culaDeviceDoubleComplex* z, int ldz);
+    interface
+        integer function cula_device_zsteqr(compz,n,d,e,z,ldz)
+            character :: compz
+            integer :: n
+            double precision, device, dimension(:) :: d
+            double precision, device, dimension(:) :: e
+            double complex, device, dimension(:,:) :: z
+            integer :: ldz
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSsyev(char jobz, char uplo, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* w);
+    interface
+        integer function cula_device_ssyev(jobz,uplo,n,a,lda,w)
+            character :: jobz
+            character :: uplo
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: w
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDsyev(char jobz, char uplo, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* w);
+    interface
+        integer function cula_device_dsyev(jobz,uplo,n,a,lda,w)
+            character :: jobz
+            character :: uplo
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: w
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCheev(char jobz, char uplo, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloat* w);
+    interface
+        integer function cula_device_cheev(jobz,uplo,n,a,lda,w)
+            character :: jobz
+            character :: uplo
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: w
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZheev(char jobz, char uplo, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDouble* w);
+    interface
+        integer function cula_device_zheev(jobz,uplo,n,a,lda,w)
+            character :: jobz
+            character :: uplo
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: w
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSsyevx(char jobz, char rang, char uplo, int n, culaDeviceFloat* a, int lda, culaFloat vl, culaFloat vu, int il, int iu, culaFloat abstol, culaInt* m, culaDeviceFloat* w, culaDeviceFloat* z, int ldz, culaInt* ifail);
+    interface
+        integer function cula_device_ssyevx(jobz,rang,uplo,n,a,lda,vl,vu,il,iu,abstol,m,w,z,ldz,ifail)
+            character :: jobz
+            character :: rang
+            character :: uplo
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real :: vl
+            real :: vu
+            integer :: il
+            integer :: iu
+            real :: abstol
+            integer, dimension(:) :: m
+            real, device, dimension(:) :: w
+            real, device, dimension(:,:) :: z
+            integer :: ldz
+            integer, dimension(:) :: ifail
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDsyevx(char jobz, char rang, char uplo, int n, culaDeviceDouble* a, int lda, culaDouble vl, culaDouble vu, int il, int iu, culaDouble abstol, culaInt* m, culaDeviceDouble* w, culaDeviceDouble* z, int ldz, culaInt* ifail);
+    interface
+        integer function cula_device_dsyevx(jobz,rang,uplo,n,a,lda,vl,vu,il,iu,abstol,m,w,z,ldz,ifail)
+            character :: jobz
+            character :: rang
+            character :: uplo
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision :: vl
+            double precision :: vu
+            integer :: il
+            integer :: iu
+            double precision :: abstol
+            integer, dimension(:) :: m
+            double precision, device, dimension(:) :: w
+            double precision, device, dimension(:,:) :: z
+            integer :: ldz
+            integer, dimension(:) :: ifail
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCheevx(char jobz, char rang, char uplo, int n, culaDeviceFloatComplex* a, int lda, culaFloat vl, culaFloat vu, int il, int iu, culaFloat abstol, culaInt* m, culaDeviceFloat* w, culaDeviceFloatComplex* z, int ldz, culaInt* ifail);
+    interface
+        integer function cula_device_cheevx(jobz,rang,uplo,n,a,lda,vl,vu,il,iu,abstol,m,w,z,ldz,ifail)
+            character :: jobz
+            character :: rang
+            character :: uplo
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            real :: vl
+            real :: vu
+            integer :: il
+            integer :: iu
+            real :: abstol
+            integer, dimension(:) :: m
+            real, device, dimension(:) :: w
+            complex, device, dimension(:,:) :: z
+            integer :: ldz
+            integer, dimension(:) :: ifail
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZheevx(char jobz, char rang, char uplo, int n, culaDeviceDoubleComplex* a, int lda, culaDouble vl, culaDouble vu, int il, int iu, culaDouble abstol, culaInt* m, culaDeviceDouble* w, culaDeviceDoubleComplex* z, int ldz, culaInt* ifail);
+    interface
+        integer function cula_device_zheevx(jobz,rang,uplo,n,a,lda,vl,vu,il,iu,abstol,m,w,z,ldz,ifail)
+            character :: jobz
+            character :: rang
+            character :: uplo
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double precision :: vl
+            double precision :: vu
+            integer :: il
+            integer :: iu
+            double precision :: abstol
+            integer, dimension(:) :: m
+            double precision, device, dimension(:) :: w
+            double complex, device, dimension(:,:) :: z
+            integer :: ldz
+            integer, dimension(:) :: ifail
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSsyrdb(char jobz, char uplo, int n, int kd, culaDeviceFloat* a, int lda, culaDeviceFloat* d, culaDeviceFloat* e, culaDeviceFloat* tau, culaDeviceFloat* z, int ldz);
+    interface
+        integer function cula_device_ssyrdb(jobz,uplo,n,kd,a,lda,d,e,tau,z,ldz)
+            character :: jobz
+            character :: uplo
+            integer :: n
+            integer :: kd
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: d
+            real, device, dimension(:) :: e
+            real, device, dimension(:) :: tau
+            real, device, dimension(:,:) :: z
+            integer :: ldz
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDsyrdb(char jobz, char uplo, int n, int kd, culaDeviceDouble* a, int lda, culaDeviceDouble* d, culaDeviceDouble* e, culaDeviceDouble* tau, culaDeviceDouble* z, int ldz);
+    interface
+        integer function cula_device_dsyrdb(jobz,uplo,n,kd,a,lda,d,e,tau,z,ldz)
+            character :: jobz
+            character :: uplo
+            integer :: n
+            integer :: kd
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: d
+            double precision, device, dimension(:) :: e
+            double precision, device, dimension(:) :: tau
+            double precision, device, dimension(:,:) :: z
+            integer :: ldz
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCherdb(char jobz, char uplo, int n, int kd, culaDeviceFloatComplex* a, int lda, culaDeviceFloat* d, culaDeviceFloat* e, culaDeviceFloatComplex* tau, culaDeviceFloatComplex* z, int ldz);
+    interface
+        integer function cula_device_cherdb(jobz,uplo,n,kd,a,lda,d,e,tau,z,ldz)
+            character :: jobz
+            character :: uplo
+            integer :: n
+            integer :: kd
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: d
+            real, device, dimension(:) :: e
+            complex, device, dimension(:) :: tau
+            complex, device, dimension(:,:) :: z
+            integer :: ldz
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZherdb(char jobz, char uplo, int n, int kd, culaDeviceDoubleComplex* a, int lda, culaDeviceDouble* d, culaDeviceDouble* e, culaDeviceDoubleComplex* tau, culaDeviceDoubleComplex* z, int ldz);
+    interface
+        integer function cula_device_zherdb(jobz,uplo,n,kd,a,lda,d,e,tau,z,ldz)
+            character :: jobz
+            character :: uplo
+            integer :: n
+            integer :: kd
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: d
+            double precision, device, dimension(:) :: e
+            double complex, device, dimension(:) :: tau
+            double complex, device, dimension(:,:) :: z
+            integer :: ldz
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSsysv(char uplo, int n, int nrhs, culaDeviceFloat* a, int lda, culaInt* ipiv, culaDeviceFloat* b, int ldb);
+    interface
+        integer function cula_device_ssysv(uplo,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDsysv(char uplo, int n, int nrhs, culaDeviceDouble* a, int lda, culaInt* ipiv, culaDeviceDouble* b, int ldb);
+    interface
+        integer function cula_device_dsysv(uplo,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCsysv(char uplo, int n, int nrhs, culaDeviceFloatComplex* a, int lda, culaInt* ipiv, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_csysv(uplo,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZsysv(char uplo, int n, int nrhs, culaDeviceDoubleComplex* a, int lda, culaInt* ipiv, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zsysv(uplo,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceChesv(char uplo, int n, int nrhs, culaDeviceFloatComplex* a, int lda, culaInt* ipiv, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_chesv(uplo,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZhesv(char uplo, int n, int nrhs, culaDeviceDoubleComplex* a, int lda, culaInt* ipiv, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zhesv(uplo,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSsytrd(char uplo, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* d, culaDeviceFloat* e, culaDeviceFloat* tau);
+    interface
+        integer function cula_device_ssytrd(uplo,n,a,lda,d,e,tau)
+            character :: uplo
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: d
+            real, device, dimension(:) :: e
+            real, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDsytrd(char uplo, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* d, culaDeviceDouble* e, culaDeviceDouble* tau);
+    interface
+        integer function cula_device_dsytrd(uplo,n,a,lda,d,e,tau)
+            character :: uplo
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: d
+            double precision, device, dimension(:) :: e
+            double precision, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceChetrd(char uplo, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloat* d, culaDeviceFloat* e, culaDeviceFloatComplex* tau);
+    interface
+        integer function cula_device_chetrd(uplo,n,a,lda,d,e,tau)
+            character :: uplo
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:) :: d
+            real, device, dimension(:) :: e
+            complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZhetrd(char uplo, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDouble* d, culaDeviceDouble* e, culaDeviceDoubleComplex* tau);
+    interface
+        integer function cula_device_zhetrd(uplo,n,a,lda,d,e,tau)
+            character :: uplo
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:) :: d
+            double precision, device, dimension(:) :: e
+            double complex, device, dimension(:) :: tau
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSsytrf(char uplo, int n, culaDeviceFloat* a, int lda, culaInt* ipiv);
+    interface
+        integer function cula_device_ssytrf(uplo,n,a,lda,ipiv)
+            character :: uplo
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDsytrf(char uplo, int n, culaDeviceDouble* a, int lda, culaInt* ipiv);
+    interface
+        integer function cula_device_dsytrf(uplo,n,a,lda,ipiv)
+            character :: uplo
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCsytrf(char uplo, int n, culaDeviceFloatComplex* a, int lda, culaInt* ipiv);
+    interface
+        integer function cula_device_csytrf(uplo,n,a,lda,ipiv)
+            character :: uplo
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZsytrf(char uplo, int n, culaDeviceDoubleComplex* a, int lda, culaInt* ipiv);
+    interface
+        integer function cula_device_zsytrf(uplo,n,a,lda,ipiv)
+            character :: uplo
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceChetrf(char uplo, int n, culaDeviceFloatComplex* a, int lda, culaInt* ipiv);
+    interface
+        integer function cula_device_chetrf(uplo,n,a,lda,ipiv)
+            character :: uplo
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZhetrf(char uplo, int n, culaDeviceDoubleComplex* a, int lda, culaInt* ipiv);
+    interface
+        integer function cula_device_zhetrf(uplo,n,a,lda,ipiv)
+            character :: uplo
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSsytrs(char uplo, int n, int nrhs, culaDeviceFloat* a, int lda, culaInt* ipiv, culaDeviceFloat* b, int ldb);
+    interface
+        integer function cula_device_ssytrs(uplo,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDsytrs(char uplo, int n, int nrhs, culaDeviceDouble* a, int lda, culaInt* ipiv, culaDeviceDouble* b, int ldb);
+    interface
+        integer function cula_device_dsytrs(uplo,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCsytrs(char uplo, int n, int nrhs, culaDeviceFloatComplex* a, int lda, culaInt* ipiv, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_csytrs(uplo,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZsytrs(char uplo, int n, int nrhs, culaDeviceDoubleComplex* a, int lda, culaInt* ipiv, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zsytrs(uplo,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceChetrs(char uplo, int n, int nrhs, culaDeviceFloatComplex* a, int lda, culaInt* ipiv, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_chetrs(uplo,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZhetrs(char uplo, int n, int nrhs, culaDeviceDoubleComplex* a, int lda, culaInt* ipiv, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zhetrs(uplo,n,nrhs,a,lda,ipiv,b,ldb)
+            character :: uplo
+            integer :: n
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            integer, dimension(:) :: ipiv
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceStrtri(char uplo, char diag, int n, culaDeviceFloat* a, int lda);
+    interface
+        integer function cula_device_strtri(uplo,diag,n,a,lda)
+            character :: uplo
+            character :: diag
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDtrtri(char uplo, char diag, int n, culaDeviceDouble* a, int lda);
+    interface
+        integer function cula_device_dtrtri(uplo,diag,n,a,lda)
+            character :: uplo
+            character :: diag
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCtrtri(char uplo, char diag, int n, culaDeviceFloatComplex* a, int lda);
+    interface
+        integer function cula_device_ctrtri(uplo,diag,n,a,lda)
+            character :: uplo
+            character :: diag
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZtrtri(char uplo, char diag, int n, culaDeviceDoubleComplex* a, int lda);
+    interface
+        integer function cula_device_ztrtri(uplo,diag,n,a,lda)
+            character :: uplo
+            character :: diag
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceStrtrs(char uplo, char trans, char diag, int n, int nrhs, culaDeviceFloat* a, int lda, culaDeviceFloat* b, int ldb);
+    interface
+        integer function cula_device_strtrs(uplo,trans,diag,n,nrhs,a,lda,b,ldb)
+            character :: uplo
+            character :: trans
+            character :: diag
+            integer :: n
+            integer :: nrhs
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDtrtrs(char uplo, char trans, char diag, int n, int nrhs, culaDeviceDouble* a, int lda, culaDeviceDouble* b, int ldb);
+    interface
+        integer function cula_device_dtrtrs(uplo,trans,diag,n,nrhs,a,lda,b,ldb)
+            character :: uplo
+            character :: trans
+            character :: diag
+            integer :: n
+            integer :: nrhs
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCtrtrs(char uplo, char trans, char diag, int n, int nrhs, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_ctrtrs(uplo,trans,diag,n,nrhs,a,lda,b,ldb)
+            character :: uplo
+            character :: trans
+            character :: diag
+            integer :: n
+            integer :: nrhs
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZtrtrs(char uplo, char trans, char diag, int n, int nrhs, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_ztrtrs(uplo,trans,diag,n,nrhs,a,lda,b,ldb)
+            character :: uplo
+            character :: trans
+            character :: diag
+            integer :: n
+            integer :: nrhs
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgeConjugate(int m, int n, culaDeviceFloatComplex* a, int lda);
+    interface
+        integer function cula_device_cge_conjugate(m,n,a,lda)
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgeConjugate(int m, int n, culaDeviceDoubleComplex* a, int lda);
+    interface
+        integer function cula_device_zge_conjugate(m,n,a,lda)
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCtrConjugate(char uplo, char diag, int m, int n, culaDeviceFloatComplex* a, int lda);
+    interface
+        integer function cula_device_ctr_conjugate(uplo,diag,m,n,a,lda)
+            character :: uplo
+            character :: diag
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZtrConjugate(char uplo, char diag, int m, int n, culaDeviceDoubleComplex* a, int lda);
+    interface
+        integer function cula_device_ztr_conjugate(uplo,diag,m,n,a,lda)
+            character :: uplo
+            character :: diag
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgeNancheck(int m, int n, culaDeviceFloat* a, int lda);
+    interface
+        integer function cula_device_sge_nancheck(m,n,a,lda)
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgeNancheck(int m, int n, culaDeviceDouble* a, int lda);
+    interface
+        integer function cula_device_dge_nancheck(m,n,a,lda)
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgeNancheck(int m, int n, culaDeviceFloatComplex* a, int lda);
+    interface
+        integer function cula_device_cge_nancheck(m,n,a,lda)
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgeNancheck(int m, int n, culaDeviceDoubleComplex* a, int lda);
+    interface
+        integer function cula_device_zge_nancheck(m,n,a,lda)
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgeTranspose(int m, int n, culaDeviceFloat* a, int lda, culaDeviceFloat* b, int ldb);
+    interface
+        integer function cula_device_sge_transpose(m,n,a,lda,b,ldb)
+            integer :: m
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+            real, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgeTranspose(int m, int n, culaDeviceDouble* a, int lda, culaDeviceDouble* b, int ldb);
+    interface
+        integer function cula_device_dge_transpose(m,n,a,lda,b,ldb)
+            integer :: m
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+            double precision, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgeTranspose(int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_cge_transpose(m,n,a,lda,b,ldb)
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgeTranspose(int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zge_transpose(m,n,a,lda,b,ldb)
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceSgeTransposeInplace(int n, culaDeviceFloat* a, int lda);
+    interface
+        integer function cula_device_sge_transpose_inplace(n,a,lda)
+            integer :: n
+            real, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceDgeTransposeInplace(int n, culaDeviceDouble* a, int lda);
+    interface
+        integer function cula_device_dge_transpose_inplace(n,a,lda)
+            integer :: n
+            double precision, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgeTransposeInplace(int n, culaDeviceFloatComplex* a, int lda);
+    interface
+        integer function cula_device_cge_transpose_inplace(n,a,lda)
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgeTransposeInplace(int n, culaDeviceDoubleComplex* a, int lda);
+    interface
+        integer function cula_device_zge_transpose_inplace(n,a,lda)
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgeTransposeConjugate(int m, int n, culaDeviceFloatComplex* a, int lda, culaDeviceFloatComplex* b, int ldb);
+    interface
+        integer function cula_device_cge_transpose_conjugate(m,n,a,lda,b,ldb)
+            integer :: m
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+            complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgeTransposeConjugate(int m, int n, culaDeviceDoubleComplex* a, int lda, culaDeviceDoubleComplex* b, int ldb);
+    interface
+        integer function cula_device_zge_transpose_conjugate(m,n,a,lda,b,ldb)
+            integer :: m
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+            double complex, device, dimension(:,:) :: b
+            integer :: ldb
+        end function
+    end interface
+
+    ! culaStatus culaDeviceCgeTransposeConjugateInplace(int n, culaDeviceFloatComplex* a, int lda);
+    interface
+        integer function cula_device_cge_transpose_conjugate_inplace(n,a,lda)
+            integer :: n
+            complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+
+    ! culaStatus culaDeviceZgeTransposeConjugateInplace(int n, culaDeviceDoubleComplex* a, int lda);
+    interface
+        integer function cula_device_zge_transpose_conjugate_inplace(n,a,lda)
+            integer :: n
+            double complex, device, dimension(:,:) :: a
+            integer :: lda
+        end function
+    end interface
+end module
+

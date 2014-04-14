@@ -1,0 +1,47 @@
+Program DeviceInterfaceCula
+  use cudafor
+  use cula_lapack_device_pgfortran
+  use cula_lapack
+  use iso_c_binding
+  implicit none
+
+  real (C_DOUBLE):: A(3,3), b(3,1)
+  real (C_DOUBLE), device, dimension(:,:), allocatable :: A_d
+  real (C_DOUBLE), device, dimension(:,:), allocatable :: b_d
+  integer (C_INT), device, dimension(:), allocatable :: piv_d
+  integer (C_INT):: i, j, pivot(3), status
+  integer (C_INT):: m = 3, n = 1
+    
+  allocate(A_d(3,3))
+  allocate(b_d(3,1))
+  allocate(piv_d(3))
+
+  A(1,1)=3.1
+  A(1,2)=1.3
+  A(1,3)=-5.7
+  A(2,1)=1.0
+  A(2,2)=-6.9
+  A(2,3)=5.8
+  A(3,1)=3.4
+  A(3,2)=7.2
+  A(3,3)=-8.8
+  
+  b(1,1)=-1.3
+  b(2,1)=-0.1
+  b(3,1)=1.8
+
+  A_d = A
+  b_d = b
+  piv_d = pivot
+  
+  status = CULA_INITIALIZE()
+  status = CULA_DEVICE_DGESV(m,n,A_d,m,piv_d,b_d,m)
+  
+  status = CULA_SHUTDOWN()
+
+  b = b_d
+
+  do i = 1, 3
+    write(*,*) b(i,1)
+  enddo
+end
