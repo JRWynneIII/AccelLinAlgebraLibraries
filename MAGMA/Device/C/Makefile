@@ -1,13 +1,10 @@
-all: setDev fortran_device clean
+all: setEnv C_dgesv clean
 
-.PHONY: setDev fortran_device clean
+.PHONY: setEnv clean
 
 LIBS=-lcuda -lmagma -lmagmablas
-MAGMAMODULE=./magma.f90
-MAGMADEVMOD=./magma.cuf
-SRC=sgesv.f90
-DEVSRC=dgesv_gpu.cuf
 OUTPUT=./magma_dgesv
+
 
 setDev:
 ifdef CRAY_PRGENVINTEL
@@ -32,8 +29,8 @@ ifndef MAGMA_INC
 	$(error Must load the MAGMA module!)
 endif
 
-fortran_device: setDev
-	ftn $(MAGMADEVMOD) $(LIBS) $(DEVSRC) -o $(OUTPUT)
+C_dgesv: setEnv
+	CC $(LIBS) dgesv_gpu.c -o $(OUTPUT)
 
 clean: 
 	rm -f *.o *.mod
