@@ -1,21 +1,14 @@
-all: setEnv C_dgesv clean
+all: setDev C_dgesv clean
 
-.PHONY: setEnv clean
+.PHONY: setDev clean
 
 LIBS=-lcuda -lmagma -lmagmablas
 OUTPUT=./magma_dgesv
 
 
 setDev:
-ifdef CRAY_PRGENVINTEL
-	$(error PrgEnv-pgi must be loaded!)
-endif
-
-ifdef CRAY_PRGENVCRAY
-	$(error PrgEnv-pgi must be loaded!)
-endif
-ifdef GCC_VERSION
-	$(error PrgEnv-pgi must be loaded!)
+ifndef CRAY_PRGENVGNU
+	$(error Must load the PrgEnv-gnu environment!)
 endif
 ifndef CRAY_LIBSCI
 	$(error Must load the cray-libsci module!)
@@ -29,7 +22,7 @@ ifndef MAGMA_INC
 	$(error Must load the MAGMA module!)
 endif
 
-C_dgesv: setEnv
+C_dgesv: setDev
 	CC $(LIBS) dgesv_gpu.c -o $(OUTPUT)
 
 clean: 
