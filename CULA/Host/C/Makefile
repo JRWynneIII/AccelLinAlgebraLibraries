@@ -10,7 +10,6 @@ INCLUDES=-I${CULA_INC_PATH}
 LIBPATH64=-L${CULA_LIB_PATH_64}
 
 LIBS=-lcula_core -lcula_lapack -lcublas -lcudart
-MODULES=./cula_lapack.f90
 CRAY=
 
 checkEnv:	
@@ -30,10 +29,7 @@ ifndef CUDATOOLKIT_HOME
 	$(error Must load the cudatoolkit module!)
 endif
 
-sgesv: checkEnv LinEq_CULA.f90
-	ftn $(CRAY) -o ./LinEq_CULA $(MODULES) LinEq_CULA.f90 $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS) 
-
-C_sgesv: checkEnv LinEq_CULA.c
+sgesv: checkEnv LinEq_CULA.c
 	cc $(CRAY) -o LinEq_CULA LinEq_CULA.c $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS)
 
 clean:

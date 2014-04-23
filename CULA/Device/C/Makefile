@@ -1,6 +1,6 @@
 # Makefile for LinEq_CULA example
 
-all: clean checkEnv sgesv
+all: clean checkEnv dgesv
 
 include $(CULA_ROOT)/examples/common/common.mk
 
@@ -9,18 +9,9 @@ include $(CULA_ROOT)/examples/common/common.mk
 INCLUDES=-I${CULA_INC_PATH}
 LIBPATH64=-L${CULA_LIB_PATH_64}
 
-LIBS=-lcula_core -lcula_lapack -lcublas -lcudart
-MODULES=./cula_lapack.f90
-CRAY=
+LIBS=-lcula_core -lcula_lapack -lcublas -lcudart -lcuda
 
 checkEnv:	
-ifdef CRAY_PRGENVINTEL
-	$(info Load the PrgEnv-intel module in your runtime environment!)
-endif
-
-ifdef CRAY_PRGENVCRAY
-	CRAY=-em
-endif
 #Check to see if cray-libsci is loaded
 ifdef CRAY_LIBSCI
 	$(error Must unload cray-libsci module!)
@@ -30,8 +21,12 @@ ifndef CUDATOOLKIT_HOME
 	$(error Must load the cudatoolkit module!)
 endif
 
-sgesv: checkEnv LinEq_CULA.f90
-	ftn $(CRAY) -o ./LinEq_CULA $(MODULES) LinEq_CULA.f90 $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS) 
+ifndef CRAY_PRGENVGNU
+	$(error Must have the PrgEnv-gnu environment loaded!)
+endif
+
+dgesv: checkEnv
+	CC -o ./dgesv dgesv_gpu.cpp $(CFLAGS) $(INCLUDES) $(LIBPATH64) $(LIBS) 
 
 clean:
 	rm -f LinEq_CULA 
