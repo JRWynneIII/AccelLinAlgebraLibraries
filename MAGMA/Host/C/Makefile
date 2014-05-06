@@ -1,4 +1,4 @@
-all: setEnv clean
+all: setEnv clean C_sgesv
 
 .PHONY: setEnv clean
 
